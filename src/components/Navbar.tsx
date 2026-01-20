@@ -1,6 +1,8 @@
 import React from 'react'
+import { useRecipeContext } from '../context/RecipeContextProvider'
 
 const Navbar = () => {
+    const { isLogin } = useRecipeContext()
   return (
     <nav>
         {/* TODO: Logo */}
@@ -12,7 +14,8 @@ const Navbar = () => {
             <li><a href="">Kezdőlap</a></li>
         </ul>
         {/* TODO: Bejelentkezés/Regisztráció */}
-        <p>Reg</p>
+        {!isLogin && <p>Regisztrálj</p>}
+        {isLogin && <p>Kijelentkezés</p>}
     </nav>
   )
 }
