@@ -1,19 +1,14 @@
-import React from 'react'
-import { useRecipeContext } from '../context/RecipeContextProvider'
+import { useLoginContext } from '../context/LoginContextProvider'
+import NavLinks from './NavLinks'
+import ToggleBtn from './ToggleBtn'
 
 const Navbar = () => {
-    const { isLogin } = useRecipeContext()
+    const { isLogin } = useLoginContext()
   return (
     <nav>
-        {/* TODO: Logo */}
         <p>Logo</p>
-        <ul>
-            <li><a href="">Saját receptek</a></li>
-            <li><a href="">Feltöltés</a></li>
-            <li><a href="">Mentve</a></li>
-            <li><a href="">Kezdőlap</a></li>
-        </ul>
-        {/* TODO: Bejelentkezés/Regisztráció */}
+        <NavLinks></NavLinks>
+        {/* <ToggleBtn></ToggleBtn> */}
         {!isLogin && <p>Regisztrálj</p>}
         {isLogin && <p>Kijelentkezés</p>}
     </nav>
