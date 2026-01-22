@@ -1,8 +1,11 @@
 import React from 'react'
+import ContentUpload_ from './pages/ContentUpload_'
 
 const App = () => {
   return (
-    <div>App</div>
+    <main>
+      <ContentUpload_/>
+    </main>
   )
 }
 

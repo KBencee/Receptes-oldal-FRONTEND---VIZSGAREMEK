@@ -1,0 +1,37 @@
+#contentUpload{
+    display: flex;
+}
+
+main{
+    font-family:Arial, Helvetica, sans-serif
+}
+
+#diffLenDiv{
+    display: flex;
+    gap: 6em;
+}
+
+#diffDiv{
+    display: flex;
+    flex-direction: column;
+    gap: 8xp;
+}
+
+#leftContDiv, #rightContDiv{
+    width: 50%;
+}
+
+#lenSelect{
+    width: 2em;
+}
+
+#rightContDiv{
+    gap: 10em;
+}
+
+#lenDiv{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-items: center;
+}
