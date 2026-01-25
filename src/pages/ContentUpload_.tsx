@@ -1,60 +1,51 @@
-const ContentUpload_ = () => {
+import { useRef, useState } from "react";
+import ImageUpload from "../components/ImageUpload";
+import TextUpload from "../components/TextUpload";
+import type { ContentType } from "../types/ContentType";
+
+function ContentUpload_() {
+  const [newPost, setNewPost] = useState<ContentType>({
+    title: "",
+    id: Math.floor(Math.random() * 10000),
+    uploader: "currentUser",
+    description: "",
+    tag: "",
+    image: "",
+    lenght: 0,
+    difficulty: ""
+  })
+
+  const titleRef = useRef<HTMLInputElement>(null);
+  const descriptionRef = useRef<HTMLTextAreaElement>(null);
+  // const tagRef = useRef<HTMLInputElement>(null);
+  const lengthRef = useRef<HTMLInputElement>(null);
+  const difficultyRef = useRef<HTMLSelectElement>(null);
+  
+  const uploadBtn_Click = () => {
+    const title = titleRef.current?.value || "";
+    const description = descriptionRef.current?.value || "";
+    // const tag = tagRef.current?.value || "";
+    const length = parseInt(lengthRef.current?.value || "0", 10);
+    const difficulty = difficultyRef.current?.value || "";
+    setNewPost({
+      title: title,
+      description: description,
+      lenght: length,
+      difficulty: difficulty,
+      id: newPost.id,
+      uploader: newPost.uploader,
+      tag: newPost.tag,
+      image: newPost.image
+    });
+  }
+
+
   return (
     <div id="contentUpload">
-      <div
-        id="leftContDiv"
-        onClick={() => document.getElementById("imageUpload")?.click()}
-      >
-        <p>Kattints ide a kép feltöltéséhez</p>
-        <input
-          type="file"
-          id="imageUpload"
-          accept="image/*"
-          style={{ display: "none" }}
-        />
-      </div>
-      <div id="rightContDiv">
-        <form id="rightCont">
-          <input
-            type="text"
-            id="setName"
-            placeholder="Add meg a recepted nevét"
-          />
-          <div id="tagList">
-            <div className="tag">Tag</div>
-          </div>
-          <textarea
-            id="setDescription"
-            placeholder="Írd le a receptedet"
-          ></textarea>
-          <div id="diffLenDiv">
-            <div id="diffDiv">
-              <label htmlFor="diffSelect">Mennyire nehéz?</label>
-              <select name="diffSelect" id="diffSelect">
-                <option value="Válassz" hidden>
-                  Válassz
-                </option>
-                <option value="Könnyű">Könnyű</option>
-                <option value="Közepes">Közepes</option>
-                <option value="Nehéz">Nehéz</option>
-              </select>
-            </div>
-            <div id="lenDiv">
-              <label htmlFor="lenSelect">Mennyi idő?</label>
-              <div id="lenInline">
-                <input type="text" id="lenSelect" />
-                <select name="lenUnitSel" id="lenUnitSel">
-                  <option value="Min">perc</option>
-                  <option value="Hour">óra</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <input type="submit" value="Feltöltés" />
-        </form>
-      </div>
+      <ImageUpload />
+      <TextUpload Click={uploadBtn_Click}/>
     </div>
   );
-};
+}
 
 export default ContentUpload_;
