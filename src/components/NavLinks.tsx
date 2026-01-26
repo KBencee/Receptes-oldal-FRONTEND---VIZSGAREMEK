@@ -1,13 +1,8 @@
-import React from 'react'
+import { Link } from "react-router-dom"
 
-const NavLinks = () => {
+const NavLinks = (props: {name:string, link:string, active:boolean}) => {
   return (
-    <ul>
-        <li><a href="">Saját receptek</a></li>
-        <li><a href="">Feltöltés</a></li>
-        <li><a href="">Mentve</a></li>
-        <li><a href="">Kezdőlap</a></li>
-    </ul>
+    <Link to={props.link} className={props.active ? "active" : ""}>{props.name}</Link>
   )
 }
 

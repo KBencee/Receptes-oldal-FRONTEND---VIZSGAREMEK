@@ -1,11 +1,8 @@
-import NavLinks from './NavLinks'
-import ToggleBtn from './ToggleBtn'
+import { Link } from 'react-router-dom'
 
-const MobileNavLinks = () => {
+const MobileNavLinks = (props: {name:string, link:string, active:boolean}) => {
   return (
-    <div className='mobileLinks'>
-      <NavLinks></NavLinks>
-    </div>
+    <Link to={props.link} className={props.active ? "active" : ""}>{props.name}</Link>
   )
 }
 

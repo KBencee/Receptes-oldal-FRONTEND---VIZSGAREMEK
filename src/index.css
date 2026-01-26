@@ -4,36 +4,60 @@
   box-sizing: border-box;
 }
 
-nav{
+.navbar{
     height: 7vh;
     display: flex;
     justify-content: space-between;
-    padding: 15px;
-
-    ul{
-        list-style: none;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        gap: 20px;
-        width: 50vw;
+    align-items: center;
+    
+    div{
+        width: 70%;
+        text-align: center;
     }
+}
+
+.desktopNav{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
 
     a{
         text-decoration: none;
         color: black;
+        padding: 1rem;
+        border-radius: 50%;
+    }
+    .active{
+        background-color: black;
+        color: wheat;
     }
 }
 
 .mobileNav{
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: white !important;
+    
+    a{
+        text-decoration: none;
+        color: black;
+        font-size: larger;
+    }
+
+}
+.toggled{
+    height: 0;
+    overflow: hidden;
 }
 
-.mobileLinks{
-    background-color: green;
-    width: 30vw;
-    display: flex;
-    border-radius: 1rem;
+.open{
+    height: 90vh;
+    position: absolute;
+    background: fixed;
+    left: 0;
+    width: 100vw;
 }
 
 .headBar{
