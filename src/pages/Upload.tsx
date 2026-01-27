@@ -1,6 +1,8 @@
+import Navbar from "../components/Navbar"
+
 const Upload = () => {
   return (
-    <div>Upload</div>
+    <Navbar/>
   )
 }
 

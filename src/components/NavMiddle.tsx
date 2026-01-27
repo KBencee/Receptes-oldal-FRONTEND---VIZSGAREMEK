@@ -4,6 +4,13 @@ import DesktopNavLinks from './DesktopNavLinks'
 import { faBars, faX } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+export type linkType = {
+  name: string,
+  link: string,
+  active: boolean
+}
+
+
 const menuItems = [
   {name: "Saját receptek", link: "/own", active: false},
   {name: "Feltöltés", link: "/upload", active: false},
@@ -21,12 +28,11 @@ const NavMiddle = () => {
     }
     window.addEventListener("resize", switchToMobile)
 
-
   return (
     <div>
         {isMobile && <button onClick={() => setIsToggled(!isToggled)}> {isToggled ? <FontAwesomeIcon icon={faBars}/> : <FontAwesomeIcon icon={faX} />}</button>}
         <nav className={(isMobile ? "mobileNav" : "desktopNav") + " " + (isMobile ? isToggled ? "toggled" : "open" : "")} >
-            {isMobile ? menuItems.map(x => <MobileNavLinks name={x.name} link={x.link} active={x.active}/>) : menuItems.map(x => <DesktopNavLinks name={x.name} link={x.link} active={x.active}/>)}
+            {isMobile ? menuItems.map(x => <MobileNavLinks name={x.name} link={x.link} active={x.active}/>) : menuItems.map(x => <DesktopNavLinks name={x.name} link={x.link} active={x.active} menuItems={menuItems}/>)}
         </nav>
     </div>
   )

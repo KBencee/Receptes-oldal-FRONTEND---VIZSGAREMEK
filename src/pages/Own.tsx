@@ -1,8 +1,8 @@
-import React from 'react'
+import Navbar from '../components/Navbar'
 
 const Own = () => {
   return (
-    <div>Own</div>
+    <Navbar/>
   )
 }
 
