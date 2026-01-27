@@ -1,4 +1,7 @@
+import { useState } from "react";
+
 const ImageUpload = () => {
+  const [imagePath, setImagePath] = useState<string>("");
   return (
     <div
       id="imageUploadDiv"
@@ -8,8 +11,15 @@ const ImageUpload = () => {
       <input
         type="file"
         id="imageUpload"
-        accept="image/*"
+        // accept="image/png, image/jpeg"
         style={{ display: "none" }}
+        onChange={(e) => {
+          if (e.target.files && e.target.files[0]) {
+            const file = e.target.files[0];
+            setImagePath(file.name);
+            console.log(file.name);
+          }
+        }}
       />
     </div>
   );

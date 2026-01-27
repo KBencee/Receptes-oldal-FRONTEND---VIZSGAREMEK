@@ -12,38 +12,49 @@ function ContentUpload_() {
     tag: "",
     image: "",
     lenght: 0,
-    difficulty: ""
-  })
+    difficulty: "",
+  });
 
-  const titleRef = useRef<HTMLInputElement>(null);
-  const descriptionRef = useRef<HTMLTextAreaElement>(null);
-  // const tagRef = useRef<HTMLInputElement>(null);
-  const lengthRef = useRef<HTMLInputElement>(null);
-  const difficultyRef = useRef<HTMLSelectElement>(null);
-  
-  const uploadBtn_Click = () => {
-    const title = titleRef.current?.value || "";
-    const description = descriptionRef.current?.value || "";
-    // const tag = tagRef.current?.value || "";
-    const length = parseInt(lengthRef.current?.value || "0", 10);
-    const difficulty = difficultyRef.current?.value || "";
-    setNewPost({
-      title: title,
-      description: description,
-      lenght: length,
-      difficulty: difficulty,
-      id: newPost.id,
-      uploader: newPost.uploader,
-      tag: newPost.tag,
-      image: newPost.image
-    });
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [length, setLength] = useState<number>(0);
+  const [lenghtUnit, setLenghtUnit] = useState<string>("");
+  const [difficulty, setDifficulty] = useState<string>("");
+  if (lenghtUnit == "óra") {
+    setLength(length * 60);
   }
 
+  const uploadBtn_Click = () => {
+    let temp = {
+      title: title,
+      id: Math.floor(Math.random() * 10000),
+      uploader: "currentUser",
+      description: description,
+      tag: "",
+      image: "",
+      lenght: length,
+      difficulty: difficulty,
+    }
+    setNewPost(temp);
+    console.log(temp);
+  };
 
   return (
     <div id="contentUpload">
       <ImageUpload />
-      <TextUpload Click={uploadBtn_Click}/>
+      <TextUpload
+        Click={uploadBtn_Click}
+        title={title}
+        setTitle={setTitle}
+        description={description}
+        setDescription={setDescription}
+        length={length}
+        setLength={setLength}
+        lenghtUnit={lenghtUnit}
+        setLenghtUnit={setLenghtUnit}
+        difficulty={difficulty}
+        setDifficulty={setDifficulty}
+      />
     </div>
   );
 }
