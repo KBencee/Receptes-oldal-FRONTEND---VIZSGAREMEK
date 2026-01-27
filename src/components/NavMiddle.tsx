@@ -26,7 +26,7 @@ const NavMiddle = () => {
     <div>
         {isMobile && <button onClick={() => setIsToggled(!isToggled)}> {isToggled ? <FontAwesomeIcon icon={faBars}/> : <FontAwesomeIcon icon={faX} />}</button>}
         <nav className={(isMobile ? "mobileNav" : "desktopNav") + " " + (isMobile ? isToggled ? "toggled" : "open" : "")} >
-        {isMobile ? menuItems.map(x => <MobileNavLinks name={x.name} link={x.link} active={x.active}/>) : menuItems.map(x => <DesktopNavLinks name={x.name} link={x.link} active={x.active}/>)}
+            {isMobile ? menuItems.map(x => <MobileNavLinks name={x.name} link={x.link} active={x.active}/>) : menuItems.map(x => <DesktopNavLinks name={x.name} link={x.link} active={x.active}/>)}
         </nav>
     </div>
   )
