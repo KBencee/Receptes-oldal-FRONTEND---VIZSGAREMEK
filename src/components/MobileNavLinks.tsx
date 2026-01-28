@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import type { linkType } from './NavMiddle'
+import styles from '../css/Nav.module.css'
 
 type MobileProps = {
   menuItems: linkType[],
@@ -9,7 +10,7 @@ type MobileProps = {
 const MobileNavLinks = ({menuItems,setActive}: MobileProps) => {
   return (
     <>
-      {menuItems.map(x => <Link to={x.link} onClick={() => setActive(x.name)} className={x.active ? "active" : ""}>{x.name}</Link>)}
+      {menuItems.map(x => <Link to={x.link} onClick={() => setActive(x.name)} className={x.active ? styles.active : ""}>{x.name}</Link>)}
     </>
   )
 }

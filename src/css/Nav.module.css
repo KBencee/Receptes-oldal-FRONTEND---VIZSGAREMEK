@@ -1,0 +1,77 @@
+.navbar{
+    height: 7vh;
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    p{
+        width: 20vw;
+    }
+
+    div{
+        width: 60vw;
+        text-align: center;
+
+        button{
+            background-color: var(--back-ground);
+            border: none;
+            font-size: 2rem;
+        }
+    }
+}
+
+.desktopNav{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+
+    a{
+        text-decoration: none;
+        color: var(--font);
+        padding: 1rem;
+        border-radius: 2rem;
+        background: rgba(255, 255, 255, 0);
+    }
+    .active{
+        background: var(--primary);
+        color: var(--secondary);
+    }
+    a:hover{
+        text-decoration: underline;
+    }
+}
+
+.mobileNav{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 1rem;
+    background-color: var(--back-ground);
+    transition: 1s;
+
+    a{
+        text-decoration: none;
+        color: var(--font);
+        font-size: larger;
+    }
+
+}
+
+.toggled{
+    height: 0;
+    overflow: hidden;
+    width: 100vw;
+    position: absolute;
+    left: 0;
+}
+
+.open{
+    height: 91vh;
+    position: absolute;
+    background: fixed;
+    left: 0;
+    width: 100vw;
+    background-color: var(--back-ground);
+}

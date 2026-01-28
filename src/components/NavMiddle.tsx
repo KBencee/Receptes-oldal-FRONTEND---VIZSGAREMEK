@@ -3,6 +3,7 @@ import MobileNavLinks from './MobileNavLinks'
 import DesktopNavLinks from './DesktopNavLinks'
 import { faBars, faX } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import styles from '../css/Nav.module.css'
 
 export type linkType = {
     name: string,
@@ -38,7 +39,7 @@ const NavMiddle = () => {
   return (
     <div>
         {isMobile && <button onClick={() => setIsToggled(!isToggled)}> {isToggled ? <FontAwesomeIcon icon={faBars}/> : <FontAwesomeIcon icon={faX} />}</button>}
-        <nav className={(isMobile ? "mobileNav" : "desktopNav") + " " + (isMobile ? isToggled ? "toggled" : "open" : "")} >
+        <nav className={(isMobile ? styles.mobileNav : styles.desktopNav) + " " + (isMobile ? isToggled ? styles.toggled : styles.open : "")} >
             {isMobile ? <MobileNavLinks setActive={setActive} menuItems={menuItems}/> :  <DesktopNavLinks setActive={setActive} menuItems={menuItems}/>}
         </nav>
     </div>
