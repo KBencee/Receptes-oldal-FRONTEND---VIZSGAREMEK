@@ -31,7 +31,7 @@
         text-decoration: none;
         color: var(--font);
         padding: 1rem;
-        border-radius: 2rem;
+        border-radius: var(--border-radius);
         background: rgba(255, 255, 255, 0);
     }
     .active{

@@ -9,6 +9,7 @@
     --secondary: #D9A066;
     --back-ground: #FFF6E5;
     --font: #3A2F2A;
+    --border-radius: 2rem;
 }
 
 body{
@@ -44,18 +45,6 @@ body{
         background-color: var(--font);
         color: var(--back-ground);
         padding: 0.5rem;
-        border-radius: 0.5rem;
+        border-radius: var(--border-radius);
     }
-}
-
-form{
-    width: 50vw;
-    height: 50vh;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, var(--primary), var(--back-ground) , var(--secondary));
-    border: black solid 2px;
 }
