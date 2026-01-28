@@ -4,8 +4,21 @@
   box-sizing: border-box;
 }
 
+:root{
+    --primary: #8B5E3C;
+    --secondary: #D9A066;
+    --back-ground: #FFF6E5;
+    --font: #3A2F2A;
+}
+
+body{
+    background-color: var(--back-ground);
+    color: var(--font);
+}
+
 .navbar{
     height: 7vh;
+    margin: 1rem 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -19,7 +32,7 @@
         text-align: center;
 
         button{
-            background-color: white;
+            background-color: var(--back-ground);
             border: none;
             font-size: 2rem;
         }
@@ -34,13 +47,17 @@
 
     a{
         text-decoration: none;
-        color: black;
+        color: var(--font);
         padding: 1rem;
-        border-radius: 50%;
+        border-radius: 2rem;
+        background: rgba(255, 255, 255, 0);
     }
     .active{
-        background-color: black;
-        color: wheat;
+        background: var(--primary);
+        color: var(--secondary);
+    }
+    a:hover{
+        text-decoration: underline;
     }
 }
 
@@ -49,16 +66,17 @@
     flex-direction: column;
     justify-content: space-evenly;
     gap: 1rem;
-    background-color: white;
+    background-color: var(--back-ground);
     transition: 1s;
 
     a{
         text-decoration: none;
-        color: black;
+        color: var(--font);
         font-size: larger;
     }
 
 }
+
 .toggled{
     height: 0;
     overflow: hidden;
@@ -68,18 +86,18 @@
 }
 
 .open{
-    height: 90vh;
+    height: 91vh;
     position: absolute;
     background: fixed;
     left: 0;
     width: 100vw;
-    background-color: white;
+    background-color: var(--back-ground);
 }
 
 .headBar{
     padding: 1rem;
     text-align: center;
-    background-color: lightgray;
+    background-color: var(--secondary);
     height: 30vh;
     display: flex;
     flex-direction: column;
@@ -101,8 +119,8 @@
         margin-left: auto;
         margin-right: auto;
         width: 20vw;
-        background-color: black;
-        color: white;
+        background-color: var(--font);
+        color: var(--back-ground);
         padding: 0.5rem;
         border-radius: 0.5rem;
     }

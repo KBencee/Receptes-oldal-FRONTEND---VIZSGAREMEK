@@ -5,16 +5,16 @@ import { faBars, faX } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export type linkType = {
-  name: string,
-  link: string,
-  active: boolean
+    name: string,
+    link: string,
+    active: boolean
 }
 
 const menuItems = [
-  {name: "Saját receptek", link: "/own", active: false},
-  {name: "Feltöltés", link: "/upload", active: false},
-  {name: "Mentve", link: "/saved", active: false},
-  {name: "Kezdőlap", link: "/", active: true},
+    {name: "Kezdőlap", link: "/", active: true},
+    {name: "Saját receptek", link: "/own", active: false},
+    {name: "Feltöltés", link: "/upload", active: false},
+    {name: "Mentve", link: "/saved", active: false},
 ]
 
 const NavMiddle = () => {
@@ -28,11 +28,11 @@ const NavMiddle = () => {
     window.addEventListener("resize", switchToMobile)
 
     const setActive = (activeItem:string) => {
-      menuItems.forEach(e => {
-        e.active = false
-        if (e.name == activeItem)
-          e.active = true
-      });
+        menuItems.forEach(e => {
+            e.active = false
+            if (e.name == activeItem)
+                e.active = true
+        });
     }
 
   return (
