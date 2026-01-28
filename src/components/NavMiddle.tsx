@@ -10,7 +10,6 @@ export type linkType = {
   active: boolean
 }
 
-
 const menuItems = [
   {name: "Saját receptek", link: "/own", active: false},
   {name: "Feltöltés", link: "/upload", active: false},
@@ -23,8 +22,8 @@ const NavMiddle = () => {
     const [isToggled, setIsToggled] = useState(true)
 
     const switchToMobile = () => {
-      if(isMobile !== window.innerWidth < 768)
-        setIsMobile(window.innerWidth < 768)
+        if(isMobile !== window.innerWidth < 768)
+            setIsMobile(window.innerWidth < 768)
     }
     window.addEventListener("resize", switchToMobile)
 
@@ -32,7 +31,7 @@ const NavMiddle = () => {
     <div>
         {isMobile && <button onClick={() => setIsToggled(!isToggled)}> {isToggled ? <FontAwesomeIcon icon={faBars}/> : <FontAwesomeIcon icon={faX} />}</button>}
         <nav className={(isMobile ? "mobileNav" : "desktopNav") + " " + (isMobile ? isToggled ? "toggled" : "open" : "")} >
-            {isMobile ? menuItems.map(x => <MobileNavLinks name={x.name} link={x.link} active={x.active}/>) : menuItems.map(x => <DesktopNavLinks name={x.name} link={x.link} active={x.active} menuItems={menuItems}/>)}
+            {isMobile ? <MobileNavLinks menuItems={menuItems}/> :  <DesktopNavLinks menuItems={menuItems}/>}
         </nav>
     </div>
   )

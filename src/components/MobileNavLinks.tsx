@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom'
+import type { linkType } from './NavMiddle'
 
-const MobileNavLinks = (props: {name:string, link:string, active:boolean}) => {
+const MobileNavLinks = (props: {menuItems: linkType[]}) => {
   return (
-    <Link to={props.link} className={props.active ? "active" : ""}>{props.name}</Link>
+    <>
+      {props.menuItems.map(x => <Link to={x.link} className={x.active ? "active" : ""}>{x.name}</Link>)}
+    </>
   )
 }
 
