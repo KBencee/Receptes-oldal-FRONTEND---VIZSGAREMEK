@@ -18,26 +18,7 @@ main {
   gap: 25px;
 }
 
-#imageUploadDiv {
-  flex: 1;
-  background: rgba(255, 255, 255, 0.388) !important;
-  border-radius: 10px;
-  min-height: 300px;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: lightgray;
-  font-size: 20px;
-  cursor: pointer;
-  transition: 0.2s;
-  border: 2px dashed black;
-}
-
-#imageUploadDiv:hover {
-  border: 2px dashed lightgray;
-}
 
 #textCont {
   flex: 1;
@@ -125,4 +106,50 @@ input[type="submit"]:hover {
   display: flex;
   gap: 10px;
   flex-direction: row;
+}
+
+#imagePreview, #imageUpload {
+  max-width: 300px;
+  max-height: 300px;
+  position: absolute;
+}
+
+.imageUploadDiv{
+  height: 300px;
+  width: 300px;
+}
+
+.fOff{
+  display: none;
+}
+
+.noBorderForImageUploadDiv {
+  border: none;
+}
+
+  .imageUploadDiv {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.388) !important;
+    border-radius: 10px;
+    min-height: 300px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: lightgray;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 2px dashed black;
+  }
+
+.imageUploadDiv:not(.has-file):hover {
+  border: 2px dashed lightgray;
+}
+
+.imageUploadDiv.has-file {
+  border: none;
+  min-height: auto;
+  padding: 0;
 }
