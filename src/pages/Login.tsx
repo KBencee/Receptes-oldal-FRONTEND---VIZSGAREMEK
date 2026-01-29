@@ -8,11 +8,11 @@ const Login = () => {
             <h1>Belépés</h1>
             <label htmlFor="name">
                 Felhasználónév<br/>
-                <input type="text" id='name'/><br/>
+                <input type="text" id='name' required/><br/>
             </label>
             <label htmlFor="pass">
                 Jelszó<br/>
-                <input type="password" id='pass'/>
+                <input type="password" id='pass' required/>
             </label>
             <p>
                 <input type="checkbox"/> Emlékezz rám &nbsp;
