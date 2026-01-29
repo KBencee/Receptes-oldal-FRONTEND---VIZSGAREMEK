@@ -6,6 +6,7 @@ import Own from './pages/Own'
 import Login from './pages/Login'
 import LoginContextProvider from './context/LoginContextProvider'
 import MobileContextProvider from './context/MobileContextProvider'
+import Signup from './pages/Signup'
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path='/upload' element={<Upload/>}/>
           <Route path='/saved' element={<Saved/>}/>
           <Route path='/login' element={<Login/>}/>
+          <Route path='/signup' element={<Signup/>}/>
         </Routes>
       </BrowserRouter>
     </MobileContextProvider>
