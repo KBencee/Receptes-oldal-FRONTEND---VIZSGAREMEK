@@ -4,6 +4,7 @@ import DesktopNavLinks from './DesktopNavLinks'
 import { faBars, faX } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from '../css/Nav.module.css'
+import { useMobileContext } from '../context/MobileContextProvider'
 
 export type linkType = {
     name: string,
@@ -19,14 +20,8 @@ const menuItems = [
 ]
 
 const NavMiddle = () => {
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
     const [isToggled, setIsToggled] = useState(true)
-
-    const switchToMobile = () => {
-        if(isMobile !== window.innerWidth < 768)
-            setIsMobile(window.innerWidth < 768)
-    }
-    window.addEventListener("resize", switchToMobile)
+    const { isMobile } = useMobileContext()
 
     const setActive = (activeItem:string) => {
         menuItems.forEach(e => {
