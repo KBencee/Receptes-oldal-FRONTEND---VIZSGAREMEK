@@ -1,18 +1,15 @@
-import { useLoginContext } from '../context/LoginContextProvider'
 import NavMiddle from './NavMiddle'
 import styles from '../css/Nav.module.css'
+import Profil from './Profil'
 
 const Navbar = () => {
-    const { isLogin } = useLoginContext()
 
   return (
     <div className={styles.navbar}>
-        <p>Logo</p>
+        <div>Logo</div>
 
         <NavMiddle/>
-
-        {!isLogin && <p style={{textAlign:"right"}}>Regisztrálj</p>}
-        {isLogin && <p style={{textAlign:"right"}}>Kijelentkezés</p>}
+        <Profil/>
     </div>
   )
 }

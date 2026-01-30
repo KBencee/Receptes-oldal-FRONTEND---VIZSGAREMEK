@@ -5,12 +5,12 @@
     justify-content: space-between;
     align-items: center;
 
-    p{
-        width: 20vw;
+    div{
+        min-width: 88.85px;
     }
 
-    div{
-        width: 60vw;
+    .middle{
+        width: 70vw;
         text-align: center;
 
         button{
