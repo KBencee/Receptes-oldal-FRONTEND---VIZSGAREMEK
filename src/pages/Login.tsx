@@ -15,11 +15,11 @@ const Login = () => {
                 <input type="password" id='pass' required/>
             </label>
             <p>
-                <input type="checkbox"/> Emlékezz rám &nbsp;
+                <input type="checkbox"/> Emlékezz rám |&nbsp;
                 <Link to="">Elfelejtett jelszó</Link>
             </p>
             <input className={styles.btn} type="submit" value="Belépés"/>
-            <p>Ha még nincsen fiókod akkor&nbsp;<Link to="/signup"> Regisztrálj</Link></p>
+            <p>Ha még nincsen fiókod akkor&nbsp;<Link to="/signup">Regisztrálj</Link></p>
         </fieldset>
     </form>
   )

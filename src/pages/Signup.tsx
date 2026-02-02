@@ -19,7 +19,7 @@ const Signup = () => {
                 <input type="password" id='pass' required/>
             </label>
             <input className={styles.btn} type="submit" value="Regisztráció"/>
-            <p>Ha már van fiókod akkor&nbsp;<Link to="/login"> Lépj be</Link></p>
+            <p>Ha már van fiókod akkor&nbsp;<Link to="/login">Lépj be</Link></p>
         </fieldset>
     </form>
   )
