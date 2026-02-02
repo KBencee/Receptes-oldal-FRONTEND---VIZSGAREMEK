@@ -25,6 +25,18 @@
     font-size: 1.1rem;
     background-color: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(7px);
+
+    button{
+        background: none;
+        border: none;
+        scale: 2;
+        color: var(--font);
+        transition: 1s;
+    }
+
+    button:hover{
+        scale: 3;
+    }
     
     label{
         width: 70%;

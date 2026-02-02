@@ -14,7 +14,7 @@ const App = () => {
     <MobileContextProvider>
       <BrowserRouter>
         <Routes>
-          <Route index element={<Home/>}/>
+          <Route path='/' index element={<Home/>}/>
           <Route path='/own' element={<Own/>}/>
           <Route path='/upload' element={<Upload/>}/>
           <Route path='/saved' element={<Saved/>}/>
