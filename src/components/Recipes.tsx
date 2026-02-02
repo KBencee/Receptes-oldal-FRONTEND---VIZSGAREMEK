@@ -1,12 +1,17 @@
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useSuspenseQuery } from '@tanstack/react-query'
 import createRecipeQueryOption from '../queryOptions/createRecipeQueryOption'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import styles from '../css/Recipes.module.css'
+
 
 const Recipes = () => {
-    const {data} = useQuery(createRecipeQueryOption())
+    const {data, isPending} = useSuspenseQuery(createRecipeQueryOption())
   return (
-    <div>
+    <div className={styles.recipes}>
         Legújabb receptek
-        {JSON.stringify(data)}
+        {isPending && <FontAwesomeIcon icon={faSpinner} spin/>}
+        {JSON.stringify(data[0].nev)}
     </div>
   )
 }
