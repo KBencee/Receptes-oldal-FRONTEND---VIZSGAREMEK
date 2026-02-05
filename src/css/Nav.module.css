@@ -1,5 +1,6 @@
 .navbar{
     height: 5vh;
+    width: 100%;
     margin: 1rem 0;
     display: flex;
     justify-content: space-between;
@@ -10,7 +11,7 @@
     }
 
     .middle{
-        width: 70vw;
+        width: 60vw;
         text-align: center;
 
         button{
@@ -24,7 +25,6 @@
 .desktopNav{
     display: flex;
     flex-direction: row;
-    width: 100%;
     justify-content: space-around;
 
     a{
@@ -76,4 +76,13 @@
     left: 0;
     width: 100vw;
     background-color: var(--back-ground);
+}
+
+
+@media only screen and (max-width: 768px){
+    .navbar{ 
+        padding: 0px 10px;
+        .middle{
+        width: auto;
+    }}
 }

@@ -13,7 +13,7 @@ const Recipes = () => {
         <h1>Legújabb receptek</h1>
         <div className={styles.recipeCardContainer}>
           {isPending && <FontAwesomeIcon icon={faSpinner} spin/>}
-          {data.map((recipe) => (<RecipeCard {...recipe}></RecipeCard>))}
+          {data.map((recipe) => (<RecipeCard {...recipe} key={recipe.id} />))}
         </div>
     </div>
   )
