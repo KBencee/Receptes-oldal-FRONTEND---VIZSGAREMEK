@@ -13,7 +13,10 @@ const RecipeCard = (recipe:RecipeType) => {
         <div className={styles.tags}>
             {recipe.cimkek.map(c => <span className={styles.tag}>{c}</span>)}
         </div>
-        <i className={recipe.mentveVan ? "fa-solid fa-bookmark" : "fa-regular fa-bookmark"}></i>
+        <p>
+
+            <i className={recipe.mentveVan ? "fa-solid fa-bookmark" : "fa-regular fa-bookmark"}></i>
+        </p>
     </div>
   )
 }
