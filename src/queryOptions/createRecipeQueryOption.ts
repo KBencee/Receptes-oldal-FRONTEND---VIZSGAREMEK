@@ -11,10 +11,9 @@ export type RecipeType = {
     elkeszitesiIdo: number,
     nehezsegiSzint: string,
     likes: number,
-    userId: string,
-    "user": null,
-    "receptCimkek": [],
-    "mentettByUsers": []
+    feltoltoUsername: string,
+    cimkek: string[],
+    mentveVan: boolean
 }
 
 export default function createRecipeQueryOption() {
@@ -25,6 +24,6 @@ export default function createRecipeQueryOption() {
 }
 
 const getRecipes = async () : Promise<RecipeType[]> => {
-  const response = await axios.get(BASE_URL + "/api/Recept/recept")
+  const response = await axios.get(BASE_URL + "/api/Recept/GetRecept")
   return await response.data
 }

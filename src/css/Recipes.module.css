@@ -1,0 +1,35 @@
+.recipes{
+    width: 80%;
+    margin: auto;
+}
+
+.recipeCard{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--primary);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+
+}
+
+.recipeCardContainer{
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 2rem;
+}
+
+.tags{
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    gap: 0.3rem;
+}
+
+.tag{
+    background-color: var(--secondary);
+    border-radius: var(--border-radius);
+    padding: 0.5rem;
+    margin: auto;
+}
