@@ -7,7 +7,7 @@ type MobileContextType = {
 const MobileContext = createContext<MobileContextType | undefined>(undefined)
 
 const MobileContextProvider = ({children}:{children: ReactNode}) => {
-    const [isMobile, setIsMobile] = useState(false)
+    const [isMobile, setIsMobile] = useState(true)
 
     const switchToMobile = () => {
         if(isMobile !== window.innerWidth < 768)

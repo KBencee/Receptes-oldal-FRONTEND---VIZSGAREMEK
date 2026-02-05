@@ -1,5 +1,5 @@
 .navbar{
-    height: 7vh;
+    height: 5vh;
     margin: 1rem 0;
     display: flex;
     justify-content: space-between;
@@ -70,7 +70,7 @@
 }
 
 .open{
-    height: 91vh;
+    height: 93vh;
     position: absolute;
     background: fixed;
     left: 0;

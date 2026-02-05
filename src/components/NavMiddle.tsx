@@ -35,7 +35,7 @@ const NavMiddle = () => {
     <div className={styles.middle}>
         {isMobile && <button onClick={() => setIsToggled(!isToggled)}> {isToggled ? <FontAwesomeIcon icon={faBars}/> : <FontAwesomeIcon icon={faX} />}</button>}
         <nav className={(isMobile ? styles.mobileNav : styles.desktopNav) + " " + (isMobile ? isToggled ? styles.toggled : styles.open : "")} >
-            {isMobile ? <MobileNavLinks setActive={setActive} menuItems={menuItems}/> :  <DesktopNavLinks setActive={setActive} menuItems={menuItems}/>}
+            {isMobile ? <MobileNavLinks setActive={setActive} menuItems={menuItems}/> : <DesktopNavLinks setActive={setActive} menuItems={menuItems}/>}
         </nav>
     </div>
   )
