@@ -13,30 +13,28 @@ export type linkType = {
     active: boolean
 }
 
-const menuItems = [
+export const menuItems = [
     {id: 0, name: "Kezdőlap", link: "/", active: true},
     {id: 1, name: "Saját receptek", link: "/own", active: false},
     {id: 2, name: "Feltöltés", link: "/upload", active: false},
     {id: 3, name: "Mentve", link: "/saved", active: false},
 ]
 
+export const setActive = (activeItem:string) => {
+    menuItems.forEach(e => {
+        e.name == activeItem ? e.active = true : e.active = false
+    });
+}
+
 const NavMiddle = () => {
     const [isToggled, setIsToggled] = useState(true)
     const { isMobile } = useMobileContext()
-
-    const setActive = (activeItem:string) => {
-        menuItems.forEach(e => {
-            e.active = false
-            if (e.name == activeItem)
-                e.active = true
-        });
-    }
 
   return (
     <div className={styles.middle}>
         {isMobile && <button onClick={() => setIsToggled(!isToggled)}> {isToggled ? <FontAwesomeIcon icon={faBars}/> : <FontAwesomeIcon icon={faX} />}</button>}
         <nav className={(isMobile ? styles.mobileNav : styles.desktopNav) + " " + (isMobile ? isToggled ? styles.toggled : styles.open : "")} >
-            {isMobile ? <MobileNavLinks setActive={setActive} menuItems={menuItems}/> : <DesktopNavLinks setActive={setActive} menuItems={menuItems}/>}
+            {isMobile ? <MobileNavLinks/> : <DesktopNavLinks/>}
         </nav>
     </div>
   )

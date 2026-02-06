@@ -2,12 +2,14 @@ import { Link, useNavigate } from 'react-router-dom'
 import styles from '../css/Login.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse } from '@fortawesome/free-solid-svg-icons'
+import { menuItems, setActive } from '../components/NavMiddle'
 
 const Login = () => {
     const navigate = useNavigate()
 
     const goToHome = () => {
         navigate("/")
+        setActive(menuItems[0].name)
     }
 
   return (

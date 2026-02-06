@@ -1,13 +1,8 @@
 import { Link } from "react-router-dom"
-import type { linkType } from "./NavMiddle";
+import { menuItems, setActive } from "./NavMiddle";
 import styles from '../css/Nav.module.css'
 
-type DesktopProps = {
-  menuItems: linkType[],
-  setActive: (activeItem: string) => void
-}
-
-const DesktopNavLinks = ({menuItems,setActive}: DesktopProps) => {
+const DesktopNavLinks = () => {
 
   return (
     <>
