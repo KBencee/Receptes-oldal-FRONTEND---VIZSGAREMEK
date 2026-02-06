@@ -10,6 +10,7 @@
     --back-ground: #FFF6E5;
     --font: #3A2F2A;
     --border-radius: 2rem;
+    scrollbar-width: none;
 }
 
 #root{

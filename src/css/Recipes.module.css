@@ -1,6 +1,9 @@
 .recipes{
     width: 90%;
     margin: auto;
+    h1{
+        padding: 1rem;
+    }
 }
 
 .recipeCard{
@@ -12,6 +15,7 @@
     padding: 1.5rem;
     min-width: 325px;
     min-height: 400px;
+    cursor: pointer;
 }
 
 .recipeCardContainer{
