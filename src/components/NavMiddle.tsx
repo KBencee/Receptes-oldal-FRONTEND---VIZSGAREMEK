@@ -7,16 +7,17 @@ import styles from '../css/Nav.module.css'
 import { useMobileContext } from '../context/MobileContextProvider'
 
 export type linkType = {
+    id: number,
     name: string,
     link: string,
     active: boolean
 }
 
 const menuItems = [
-    {name: "Kezdőlap", link: "/", active: true},
-    {name: "Saját receptek", link: "/own", active: false},
-    {name: "Feltöltés", link: "/upload", active: false},
-    {name: "Mentve", link: "/saved", active: false},
+    {id: 0, name: "Kezdőlap", link: "/", active: true},
+    {id: 1, name: "Saját receptek", link: "/own", active: false},
+    {id: 2, name: "Feltöltés", link: "/upload", active: false},
+    {id: 3, name: "Mentve", link: "/saved", active: false},
 ]
 
 const NavMiddle = () => {

@@ -11,7 +11,7 @@ const DesktopNavLinks = ({menuItems,setActive}: DesktopProps) => {
 
   return (
     <>
-      {menuItems.map(x => <Link to={x.link} className={x.active ? styles.active : ""} onClick={() => setActive(x.name)}>{x.name}</Link>)}
+      {menuItems.map(x => <Link to={x.link} className={x.active ? styles.active : ""} onClick={() => setActive(x.name)} key={x.id}>{x.name}</Link>)}
     </>
   )
 }

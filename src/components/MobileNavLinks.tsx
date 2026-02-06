@@ -10,7 +10,7 @@ type MobileProps = {
 const MobileNavLinks = ({menuItems,setActive}: MobileProps) => {
   return (
     <>
-      {menuItems.map(x => <Link to={x.link} onClick={() => setActive(x.name)} className={x.active ? styles.active : ""}>{x.name}</Link>)}
+      {menuItems.map(x => <Link to={x.link} onClick={() => setActive(x.name)} className={x.active ? styles.active : ""} key={x.id}>{x.name}</Link>)}
     </>
   )
 }

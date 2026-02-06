@@ -24,6 +24,6 @@ export default function createRecipeQueryOption() {
 }
 
 const getRecipes = async () : Promise<RecipeType[]> => {
-  const response = await axios.get(BASE_URL + "/api/Recept/GetRecept")
+  const response = await axios.get(BASE_URL + "/api/Recept")
   return await response.data
 }
