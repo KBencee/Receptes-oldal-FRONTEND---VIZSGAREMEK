@@ -8,11 +8,12 @@ function ContentUpload_() {
     title: "",
     id: Math.floor(Math.random() * 10000),
     uploader: "currentUser",
+    uploadTime: new Date(),
     description: "",
-    tag: "",
     image: "",
     lenght: 0,
     difficulty: "",
+    tags: []
   });
 
   const [title, setTitle] = useState<string>("");
@@ -20,6 +21,7 @@ function ContentUpload_() {
   const [length, setLength] = useState<number>(0);
   const [lenghtUnit, setLenghtUnit] = useState<string>("");
   const [difficulty, setDifficulty] = useState<string>("");
+  const [tags, setTags] = useState<string[]>([]);
   if (lenghtUnit == "óra") {
     setLength(length * 60);
   }
@@ -29,11 +31,12 @@ function ContentUpload_() {
       title: title,
       id: Math.floor(Math.random() * 10000),
       uploader: "currentUser",
+      uploadTime: new Date(),
       description: description,
-      tag: "",
       image: "",
       lenght: length,
       difficulty: difficulty,
+      tags: tags
     }
     setNewPost(temp);
     console.log(temp);
@@ -54,6 +57,8 @@ function ContentUpload_() {
         setLenghtUnit={setLenghtUnit}
         difficulty={difficulty}
         setDifficulty={setDifficulty}
+        tags={tags}
+        setTags={setTags}
       />
     </div>
   );

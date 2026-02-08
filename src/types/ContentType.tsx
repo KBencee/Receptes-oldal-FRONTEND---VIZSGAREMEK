@@ -2,9 +2,10 @@ export type ContentType = {
     title: string,
     id: number,
     uploader: string,
+    uploadTime: Date,
     description: string,
-    tag: string,
     image: string,
     lenght: number,
-    difficulty: string
+    difficulty: string,
+    tags?: string[]
 }

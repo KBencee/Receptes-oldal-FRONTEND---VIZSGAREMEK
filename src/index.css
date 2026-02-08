@@ -18,13 +18,12 @@ main {
   gap: 25px;
 }
 
-
-
 #textCont {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 15px;
+  flex-grow: 1;
 }
 
 #lenSelect {
@@ -43,18 +42,41 @@ main {
   padding-top: 10px;
 }
 
-  #tagList {
-    display: flex;
-    gap: 10px;
-  }
+#tagList {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding: 10px 0;
+  width: 100%;
+  max-width: 100%;
 
-  .tag {
-    background: rgb(109, 245, 141);
-    color: green;
-    padding: 5px 10px;
-    border-radius: 10px;
-    font-size: 15px;
-  }
+}
+
+#tagList::-webkit-scrollbar {
+  height: 6px;
+}
+
+#tagList::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+#tagList::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.tag {
+  background: rgb(109, 245, 141);
+  color: green;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 15px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  cursor: pointer;
+}
 
 #setDescription {
   resize: none;
@@ -108,18 +130,19 @@ input[type="submit"]:hover {
   flex-direction: row;
 }
 
-#imagePreview, #imageUpload {
+#imagePreview,
+#imageUpload {
   max-width: 300px;
   max-height: 300px;
   position: absolute;
 }
 
-.imageUploadDiv{
+.imageUploadDiv {
   height: 300px;
   width: 300px;
 }
 
-.fOff{
+.fOff {
   display: none;
 }
 
@@ -127,22 +150,22 @@ input[type="submit"]:hover {
   border: none;
 }
 
-  .imageUploadDiv {
-    flex: 1;
-    background: rgba(255, 255, 255, 0.388) !important;
-    border-radius: 10px;
-    min-height: 300px;
+.imageUploadDiv {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.388) !important;
+  border-radius: 10px;
+  min-height: 300px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    color: lightgray;
-    font-size: 20px;
-    cursor: pointer;
-    transition: 0.2s;
-    border: 2px dashed black;
-  }
+  color: lightgray;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.2s;
+  border: 2px dashed black;
+}
 
 .imageUploadDiv:not(.has-file):hover {
   border: 2px dashed lightgray;
