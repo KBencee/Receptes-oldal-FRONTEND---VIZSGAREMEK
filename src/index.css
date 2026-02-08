@@ -43,18 +43,18 @@ main {
   padding-top: 10px;
 }
 
-#tagList {
-  display: flex;
-  gap: 10px;
-}
+  #tagList {
+    display: flex;
+    gap: 10px;
+  }
 
-.tag {
-  background: rgb(109, 245, 141);
-  color: green;
-  padding: 5px 10px;
-  border-radius: 10px;
-  font-size: 15px;
-}
+  .tag {
+    background: rgb(109, 245, 141);
+    color: green;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 15px;
+  }
 
 #setDescription {
   resize: none;
