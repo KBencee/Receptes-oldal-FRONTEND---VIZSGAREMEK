@@ -1,21 +1,13 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styles from '../css/Login.module.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse } from '@fortawesome/free-solid-svg-icons'
-import { menuItems, setActive } from '../components/NavMiddle'
+import { loginUser } from '../queryOptions/createRecipeQueryOption'
+import HomeBtn from '../components/HomeBtn'
 
 const Login = () => {
-    const navigate = useNavigate()
-
-    const goToHome = () => {
-        navigate("/")
-        setActive(menuItems[0].name)
-    }
-
   return (
     <form className={styles.myForm}>
         <fieldset className={styles.login}>
-            <button onClick={() => goToHome()}><FontAwesomeIcon icon={faHouse} /></button>
+            <HomeBtn/>
             <h1>Belépés</h1>
             <label htmlFor="name">
                 Felhasználónév<br/>
@@ -29,7 +21,7 @@ const Login = () => {
                 <input type="checkbox"/> Emlékezz rám |&nbsp;
                 <Link to="">Elfelejtett jelszó</Link>
             </p>
-            <input className={styles.btn} type="submit" value="Belépés"/>
+            <button className={styles.btn}>Belépés</button>
             <p>Ha még nincsen fiókod akkor&nbsp;<Link to="/signup">Regisztrálj</Link></p>
         </fieldset>
     </form>

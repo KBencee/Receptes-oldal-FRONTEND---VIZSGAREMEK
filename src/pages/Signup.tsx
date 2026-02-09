@@ -1,21 +1,13 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styles from '../css/Login.module.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse } from '@fortawesome/free-solid-svg-icons'
-import { menuItems, setActive } from '../components/NavMiddle'
+import HomeBtn from '../components/HomeBtn'
 
 const Signup = () => {
-    const navigate = useNavigate()
-
-    const goToHome = () => {
-        navigate("/")
-        setActive(menuItems[0].name)
-    }
 
   return (
     <form className={styles.myForm}>
         <fieldset className={styles.login}>
-            <button onClick={() => goToHome()}><FontAwesomeIcon icon={faHouse} /></button>
+            <HomeBtn/>
             <h1>Regisztáció</h1>
             <label htmlFor="name">
                 Felhasználónév<br/>

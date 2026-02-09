@@ -26,7 +26,7 @@
     background-color: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(7px);
 
-    button{
+    .homeBtn{
         background: none;
         border: none;
         scale: 2;
@@ -34,7 +34,7 @@
         transition: 1s;
     }
 
-    button:hover{
+    .homeBtn:hover{
         scale: 3;
     }
     
