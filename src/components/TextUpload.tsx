@@ -1,8 +1,6 @@
-import { useState } from "react";
 
-type uploadBtnProp = {
-  Click: () => void;
-};
+
+
 
 const TextUpload = ({
   ...props
@@ -23,7 +21,7 @@ const TextUpload = ({
 }) => {
   const addTag = () => {
     if (props.tags.length < 4) {
-      props.setTags([...props.tags, "Kukikakamikami"]);
+      props.setTags([...props.tags, "Új címke"]);
     }
   };
   const handleTagEdit = (index: number, newValue: string) => {

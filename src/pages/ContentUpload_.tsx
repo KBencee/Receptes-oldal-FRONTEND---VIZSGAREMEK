@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import ImageUpload from "../components/ImageUpload";
 import TextUpload from "../components/TextUpload";
 import type { ContentType } from "../types/ContentType";
+import apitest from "../services/postUpload";
 
 function ContentUpload_() {
   const [newPost, setNewPost] = useState<ContentType>({
@@ -13,7 +14,7 @@ function ContentUpload_() {
     image: "",
     lenght: 0,
     difficulty: "",
-    tags: []
+    tags: [],
   });
 
   const [title, setTitle] = useState<string>("");
@@ -22,11 +23,15 @@ function ContentUpload_() {
   const [lenghtUnit, setLenghtUnit] = useState<string>("");
   const [difficulty, setDifficulty] = useState<string>("");
   const [tags, setTags] = useState<string[]>([]);
+
   if (lenghtUnit == "óra") {
     setLength(length * 60);
   }
 
-  const uploadBtn_Click = () => {
+  const uploadBtn_Click = async () => {
+    if (lenghtUnit == "óra") {
+      setLength(length * 60);
+    }
     let temp = {
       title: title,
       id: Math.floor(Math.random() * 10000),
@@ -36,10 +41,11 @@ function ContentUpload_() {
       image: "",
       lenght: length,
       difficulty: difficulty,
-      tags: tags
-    }
+      tags: tags,
+    };
     setNewPost(temp);
     console.log(temp);
+    apitest(temp);
   };
 
   return (

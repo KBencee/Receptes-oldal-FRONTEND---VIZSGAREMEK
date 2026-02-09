@@ -8,4 +8,8 @@ export type ContentType = {
     lenght: number,
     difficulty: string,
     tags?: string[]
+
+
+    
+
 }
