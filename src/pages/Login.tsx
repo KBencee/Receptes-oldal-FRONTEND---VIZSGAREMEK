@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import styles from '../css/Login.module.css'
-import { loginUser } from '../queryOptions/createRecipeQueryOption'
 import HomeBtn from '../components/HomeBtn'
 
 const Login = () => {

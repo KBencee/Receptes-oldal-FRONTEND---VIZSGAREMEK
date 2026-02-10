@@ -13,9 +13,13 @@
     border: 2px solid var(--primary);
     border-radius: var(--border-radius);
     padding: 1.5rem;
-    min-width: 325px;
-    min-height: 400px;
+    width: 325px;
+    height: 400px;
     cursor: pointer;
+    .myImg{
+        max-width: 300px;
+        max-height: 150px;
+    }
 }
 
 .recipeCardContainer{

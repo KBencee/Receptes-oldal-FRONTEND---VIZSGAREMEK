@@ -7,6 +7,7 @@ import Login from './pages/Login'
 import LoginContextProvider from './context/LoginContextProvider'
 import MobileContextProvider from './context/MobileContextProvider'
 import Signup from './pages/Signup'
+import ForYou from './pages/ForYou'
 import ContentUpload_ from './pages/ContentUpload_'
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
           <Route path='/saved' element={<Saved/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/signup' element={<Signup/>}/>
+          <Route path='/foryou' element={<ForYou/>}/>
         </Routes>
       </BrowserRouter>
     </MobileContextProvider>

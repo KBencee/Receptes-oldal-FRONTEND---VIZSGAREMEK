@@ -12,6 +12,7 @@ export type RecipeType = {
     nehezsegiSzint: string,
     likes: number,
     feltoltoUsername: string,
+    kepUrl: string,
     cimkek: string[],
     mentveVan: boolean
 }
@@ -26,4 +27,31 @@ export default function createRecipeQueryOption() {
 const getRecipes = async () : Promise<RecipeType[]> => {
   const response = await axios.get(BASE_URL + "/api/Recept")
   return await response.data
+}
+
+type TokenResponse = {
+    access: string,
+    refresh: string
+}
+
+export async function loginUser(username: string, password: string) {
+    console.log("Try login...");
+    
+    const response = await fetch(
+        BASE_URL + "/api/Auth/login/",
+        {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({username, password})
+        }
+    )
+
+    if(!response.ok){
+        console.error("Hibás felhasználó név vagy jelszó!");
+        return
+    }
+    alert("Sikeres bejelentkezés")
+    const data:TokenResponse = await response.json()
+    localStorage.setItem("access", data.access)
+    localStorage.setItem("refresh", data.refresh)
 }

@@ -3,6 +3,7 @@ import ImageUpload from "../components/ImageUpload";
 import TextUpload from "../components/TextUpload";
 import type { ContentType } from "../types/ContentType";
 import apitest from "../services/postUpload";
+import Navbar from "../components/Navbar";
 
 
 function ContentUpload_() {
@@ -51,27 +52,30 @@ function ContentUpload_() {
   };
 
   return (
-    <div id="contentUpload">
-      <ImageUpload 
-      image={image}
-      setImage={setImage}
-      />
-      <TextUpload
-        Click={uploadBtn_Click}
-        title={title}
-        setTitle={setTitle}
-        description={description}
-        setDescription={setDescription}
-        length={length}
-        setLength={setLength}
-        lenghtUnit={lenghtUnit}
-        setLenghtUnit={setLenghtUnit}
-        difficulty={difficulty}
-        setDifficulty={setDifficulty}
-        tags={tags}
-        setTags={setTags}
-      />
-    </div>
+    <>
+      <Navbar/>
+      <div id="contentUpload">
+        <ImageUpload 
+        image={image}
+        setImage={setImage}
+        />
+        <TextUpload
+          Click={uploadBtn_Click}
+          title={title}
+          setTitle={setTitle}
+          description={description}
+          setDescription={setDescription}
+          length={length}
+          setLength={setLength}
+          lenghtUnit={lenghtUnit}
+          setLenghtUnit={setLenghtUnit}
+          difficulty={difficulty}
+          setDifficulty={setDifficulty}
+          tags={tags}
+          setTags={setTags}
+        />
+      </div>
+    </>
   );
 }
 

@@ -7,13 +7,13 @@ import RecipeCard from './RecipeCard'
 
 
 const Recipes = () => {
-    const {data, isPending} = useSuspenseQuery(createRecipeQueryOption())
+    const {data, isPending, isFetched} = useSuspenseQuery(createRecipeQueryOption())
   return (
     <div className={styles.recipes}>
         <h1>Legújabb receptek</h1>
         <div className={styles.recipeCardContainer}>
           {isPending && <FontAwesomeIcon icon={faSpinner} spin/>}
-          {data.map((recipe) => (<RecipeCard {...recipe} key={recipe.id} />))}
+          {isFetched && data.map((recipe) => (<RecipeCard {...recipe} key={recipe.id} />))}
         </div>
     </div>
   )

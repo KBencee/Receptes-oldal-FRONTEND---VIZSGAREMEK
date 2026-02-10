@@ -1,10 +1,17 @@
 import type { RecipeType } from "../queryOptions/createRecipeQueryOption"
 import styles from '../css/Recipes.module.css'
+import { useNavigate } from "react-router-dom"
 
 const RecipeCard = (recipe:RecipeType) => {
+  const navigate = useNavigate()
+
+  const goToForYou = () => {
+    navigate("/foryou", { state: { recipe } })
+  }
+
   return (
-    <div onClick={() => {}} className={styles.recipeCard}>
-        <img src="backgroud.jpg" alt={recipe.nev} title={recipe.nev}/>
+    <div onClick={() => {goToForYou()}} className={styles.recipeCard}>
+        <img className={styles.myImg} src={recipe.kepUrl ? recipe.kepUrl : "backgroud.jpg"} alt={recipe.nev} title={recipe.nev}/>
         <h2>{recipe.nev}</h2>
         <h3>{recipe.feltoltoUsername}</h3>
         <p>{recipe.likes}❤️</p>
