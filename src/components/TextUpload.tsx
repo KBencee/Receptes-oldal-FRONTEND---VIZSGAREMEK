@@ -1,5 +1,3 @@
-import './balazs.css'
-
 
 const TextUpload = ({
   ...props

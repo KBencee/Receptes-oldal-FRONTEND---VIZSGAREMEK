@@ -1,0 +1,38 @@
+.recipes{
+    width: 90%;
+    margin: auto;
+}
+
+.recipeCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: 2px solid var(--primary);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    min-width: 325px;
+    min-height: 400px;
+}
+
+.recipeCardContainer{
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 2rem;
+}
+
+.tags{
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+.tag{
+    background-color: var(--secondary);
+    border-radius: var(--border-radius);
+    padding: 0.5rem;
+    margin: auto;
+}

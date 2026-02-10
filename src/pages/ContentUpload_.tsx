@@ -3,7 +3,6 @@ import ImageUpload from "../components/ImageUpload";
 import TextUpload from "../components/TextUpload";
 import type { ContentType } from "../types/ContentType";
 import apitest from "../services/postUpload";
-import './balazs.css'
 
 
 function ContentUpload_() {
