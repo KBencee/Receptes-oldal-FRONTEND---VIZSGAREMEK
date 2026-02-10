@@ -1,5 +1,4 @@
-
-
+import './balazs.css'
 
 
 const TextUpload = ({

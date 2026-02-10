@@ -1,6 +1,13 @@
 import { useState } from "react";
+import './balazs.css'
 
-const ImageUpload = () => {
+
+const ImageUpload = ({
+  ...props
+}: {
+  image: File | null
+  setImage: (image: File | null) => void
+ }) => {
   const [imagePath, setImagePath] = useState<string>("");
   const [fileSelected, setFileSelected] = useState<boolean>(false);
   return (
@@ -22,6 +29,7 @@ const ImageUpload = () => {
               const objectUrl = URL.createObjectURL(file);
               setImagePath(objectUrl);
               setFileSelected(true);
+              if (props.setImage) props.setImage(file);
             }
           }}
         />

@@ -4,7 +4,7 @@ export type ContentType = {
     uploader: string,
     uploadTime: Date,
     description: string,
-    image: string,
+    image: File | string,
     lenght: number,
     difficulty: string,
     tags?: string[]

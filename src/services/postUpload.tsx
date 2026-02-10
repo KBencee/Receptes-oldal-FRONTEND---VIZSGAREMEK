@@ -1,11 +1,10 @@
-import React, { useState } from "react";
 import type { ContentType } from "../types/ContentType";
 import type { ApiContentType } from "../types/ApiContentType";
 
 const API_BASE_URL = "https://cbnncff2-7114.euw.devtunnels.ms/api";
-let TagIdList: { id: number }[] = [];
+let allTags: { cimkeNev: string }[] = [];
 const apitest = async (rawPost: ContentType) => {
-  let allTags: { cimkeNev: string }[] = [];
+  let TagIdList: { id: number }[] = [];
   try {
     const response = await fetch(`${API_BASE_URL}/Cimkek`);
 
@@ -72,7 +71,7 @@ const apitest = async (rawPost: ContentType) => {
       console.error("Error:", error);
     }
   };
-  let TagIdList: { id: number }[] = [];
+  console.log(login());
   if (rawPost.tags && rawPost.tags.length > 0) {
     for (let index = 0; index < rawPost.tags.length; index++) {
       for (let i = 0; i < allTags.length; i++) {
@@ -92,42 +91,91 @@ const apitest = async (rawPost: ContentType) => {
   console.log(TagIdList);
 
   let postToUpload: ApiContentType = {
-    nev: rawPost.title,
-    cimkeIds: TagIdList.map(tag => +tag.id),
-    elkeszitesiIdo: rawPost.lenght,
-    hozzavalok: "sample",
-    leiras: rawPost.description,
-    nehezsegiSzint: rawPost.difficulty,
+    Nev: rawPost.title,
+    CimkeIds: TagIdList.map((tag) => +tag.id),
+    ElkeszitesiIdo: rawPost.lenght,
+    Hozzavalok: "sample",
+    Leiras: rawPost.description,
+    NehezsegiSzint: rawPost.difficulty,
+    Kep: rawPost.image,
   };
 
+  // const uploadPost = async (token: string, postToUpload: ApiContentType) => {
+  //   try {
+  //     const response = await fetch(`${API_BASE_URL}/Recept/with-image`, {
+  //       method: "POST",
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //       body: JSON.stringify({
+  //         nev: postToUpload.Nev,
+  //         cimkeIds: postToUpload.CimkeIds,
+  //         elkeszitesiIdo: postToUpload.ElkeszitesiIdo,
+  //         hozzavalok: postToUpload.Hozzavalok,
+  //         leiras: postToUpload.Leiras,
+  //         nehezsegiSzint: postToUpload.NehezsegiSzint,
+  //         kep: postToUpload.Kep,
+  //       }),
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error("Failed");
+  //     }
+  //     const data = await response.json();
+  //     console.log(data);
+  //     console.log("Sikeres post feltöltés");
+  //   } catch (error) {
+  //     console.error("Error fetching tags:", error);
+  //   }
+  // };
   const uploadPost = async (token: string, postToUpload: ApiContentType) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/Recept`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          nev: postToUpload.nev,
-          cimkeIds: postToUpload.cimkeIds,
-          elkeszitesiIdo: postToUpload.elkeszitesiIdo,
-          hozzavalok: postToUpload.hozzavalok,
-          leiras: postToUpload.leiras,
-          nehezsegiSzint: postToUpload.nehezsegiSzint,
-        }),
-      });
+  try {
+    const formData = new FormData();
+    
+    formData.append('Nev', postToUpload.Nev);
+    formData.append('ElkeszitesiIdo', postToUpload.ElkeszitesiIdo.toString());
+    formData.append('Hozzavalok', postToUpload.Hozzavalok || '');
+    formData.append('Leiras', postToUpload.Leiras || '');
+    formData.append('NehezsegiSzint', postToUpload.NehezsegiSzint || '');
+    
+    postToUpload.CimkeIds.forEach(id => {
+      formData.append('CimkeIds', id.toString());
+    });
 
-      if (!response.ok) {
-        throw new Error("Failed");
-      }
-      const data = await response.json();
-      console.log(data);
-      console.log("Sikeres feltöltés");
-    } catch (error) {
-      console.error("Error fetching tags:", error);
+    if (postToUpload.Kep) {
+      formData.append('Kep', postToUpload.Kep);
     }
-  };
+
+    console.log("FormData contents:");
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}:`, value);
+    }
+
+    const response = await fetch(`${API_BASE_URL}/Recept/with-image`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Response status:", response.status);
+      console.error("Error details:", errorText);
+      throw new Error(`Failed: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    console.log("Response data:", data);
+    console.log("Sikeres post feltöltés");
+    return data;
+    
+  } catch (error) {
+    console.error("Error uploading post:", error);
+    throw error;
+  }
+};
   uploadPost(await login(), postToUpload);
 };
 

@@ -1,8 +1,9 @@
 export type ApiContentType = {
-    nev: string;
-    cimkeIds: number[];
-    elkeszitesiIdo: number;
-    hozzavalok: string;
-    leiras: string;
-    nehezsegiSzint: string;
+    Nev: string;
+    CimkeIds: number[];
+    ElkeszitesiIdo: number;
+    Hozzavalok: string;
+    Leiras: string;
+    NehezsegiSzint: string;
+    Kep: File | string;
 };

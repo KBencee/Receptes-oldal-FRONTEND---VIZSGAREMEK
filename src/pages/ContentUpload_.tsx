@@ -3,6 +3,8 @@ import ImageUpload from "../components/ImageUpload";
 import TextUpload from "../components/TextUpload";
 import type { ContentType } from "../types/ContentType";
 import apitest from "../services/postUpload";
+import './balazs.css'
+
 
 function ContentUpload_() {
   const [newPost, setNewPost] = useState<ContentType>({
@@ -23,6 +25,7 @@ function ContentUpload_() {
   const [lenghtUnit, setLenghtUnit] = useState<string>("");
   const [difficulty, setDifficulty] = useState<string>("");
   const [tags, setTags] = useState<string[]>([]);
+  const [image, setImage] = useState<File | null>(null);
 
   if (lenghtUnit == "óra") {
     setLength(length * 60);
@@ -38,7 +41,7 @@ function ContentUpload_() {
       uploader: "currentUser",
       uploadTime: new Date(),
       description: description,
-      image: "",
+      image: image ?? "",
       lenght: length,
       difficulty: difficulty,
       tags: tags,
@@ -50,7 +53,10 @@ function ContentUpload_() {
 
   return (
     <div id="contentUpload">
-      <ImageUpload />
+      <ImageUpload 
+      image={image}
+      setImage={setImage}
+      />
       <TextUpload
         Click={uploadBtn_Click}
         title={title}
