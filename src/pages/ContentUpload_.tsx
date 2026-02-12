@@ -5,10 +5,9 @@ import apitest from "../services/postUpload";
 import Navbar from "../components/Navbar";
 import type { ContentType } from "../types/ContentType";
 import { useMobileContext } from "../context/MobileContextProvider";
-
+import UploadAlert from "../components/UploadAlert";
 
 function ContentUpload_() {
-
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [length, setLength] = useState<number>(0);
@@ -17,9 +16,11 @@ function ContentUpload_() {
   const [tags, setTags] = useState<string[]>(["Cimke"]);
   const [image, setImage] = useState<File | null>(null);
   const [ingredients, setIngredients] = useState<string>("");
-  const {isMobile} = useMobileContext();
+  const { isMobile } = useMobileContext();
+  const [buttonClicked, setButtonClicked] = useState<boolean>(false);
 
   const uploadBtn_Click = async () => {
+    setButtonClicked(true);
     let trueLength: number = length;
     if (lenghtUnit == "Hour") {
       trueLength = length * 60;
@@ -37,34 +38,39 @@ function ContentUpload_() {
       ingredients: ingredients,
     };
     console.log(temp);
-    apitest(temp);
+    // apitest(temp);
   };
 
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <div id={isMobile ? "contentUploadMobile" : "contentUpload"}>
-        <ImageUpload 
-        image={image}
-        setImage={setImage}
-        />
-        <TextUpload
-          Click={uploadBtn_Click}
-          title={title}
-          setTitle={setTitle}
-          description={description}
-          setDescription={setDescription}
-          length={length}
-          setLength={setLength}
-          lenghtUnit={lenghtUnit}
-          setLenghtUnit={setLenghtUnit}
-          difficulty={difficulty}
-          setDifficulty={setDifficulty}
-          tags={tags}
-          setTags={setTags}
-          ingredients={ingredients}
-          setIngredients={setIngredients}
-        />
+        {!buttonClicked && <ImageUpload image={image} setImage={setImage} />}
+        {!buttonClicked && (
+          <TextUpload
+            Click={uploadBtn_Click}
+            title={title}
+            setTitle={setTitle}
+            description={description}
+            setDescription={setDescription}
+            length={length}
+            setLength={setLength}
+            lenghtUnit={lenghtUnit}
+            setLenghtUnit={setLenghtUnit}
+            difficulty={difficulty}
+            setDifficulty={setDifficulty}
+            tags={tags}
+            setTags={setTags}
+            ingredients={ingredients}
+            setIngredients={setIngredients}
+          />
+        )}
+        {buttonClicked && (
+          <>
+            <div id="alertOverlay"/>
+            <UploadAlert />
+          </>
+        )}
       </div>
     </>
   );
