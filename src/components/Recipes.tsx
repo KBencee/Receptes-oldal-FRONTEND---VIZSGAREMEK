@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import createRecipeQueryOption from '../queryOptions/createRecipeQueryOption'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
@@ -7,13 +7,14 @@ import RecipeCard from './RecipeCard'
 
 
 const Recipes = () => {
-    const {data, isPending, isFetched} = useSuspenseQuery(createRecipeQueryOption())
+    const {data, isPending, isFetched, isError} = useQuery(createRecipeQueryOption())
   return (
     <div className={styles.recipes}>
         <h1>Legújabb receptek</h1>
         <div className={styles.recipeCardContainer}>
           {isPending && <FontAwesomeIcon icon={faSpinner} spin/>}
-          {isFetched && data.map((recipe) => (<RecipeCard {...recipe} key={recipe.id} />))}
+          {isFetched && data?.map((recipe) => (<RecipeCard {...recipe} key={recipe.id} />))}
+          {isError && <h1>Hiba</h1>}
         </div>
     </div>
   )
