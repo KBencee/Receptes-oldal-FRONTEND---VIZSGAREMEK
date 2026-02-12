@@ -1,4 +1,3 @@
-
 const TextUpload = ({
   ...props
 }: {
@@ -17,8 +16,8 @@ const TextUpload = ({
   setTags: (tags: string[]) => void;
 }) => {
   const addTag = () => {
-    if (props.tags.length < 4) {
-      props.setTags([...props.tags, "Új címke"]);
+    if (props.tags.length < 20) {
+      props.setTags([...props.tags, "Címke"]);
     }
   };
   const handleTagEdit = (index: number, newValue: string) => {
@@ -37,31 +36,45 @@ const TextUpload = ({
           onChange={(e) => props.setTitle(e.target.value)}
         />
         <div id="tagList">
-          {props.tags.map((tag, index) => (
-            <div
-              key={index}
-              className="tag"
-              contentEditable
-              suppressContentEditableWarning
-              onBlur={(e) =>
-                handleTagEdit(index, e.currentTarget.textContent || "")
-              }
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  e.preventDefault();
-                  e.currentTarget.blur();
+          <div id="innerTagList">
+            {props.tags.map((tag, index) => (
+              <div
+                key={index}
+                className="tag"
+                contentEditable
+                suppressContentEditableWarning
+                onInput={(e) => {
+                  const text = e.currentTarget.textContent || "";
+                  if (text.length > 16) {
+                    e.currentTarget.textContent = text.slice(0, 16);
+                    const range = document.createRange();
+                    const sel = window.getSelection();
+                    range.selectNodeContents(e.currentTarget);
+                    range.collapse(false);
+                    sel?.removeAllRanges();
+                    sel?.addRange(range);
+                  }
+                }}
+                onBlur={(e) =>
+                  handleTagEdit(index, e.currentTarget.textContent || "")
                 }
-              }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault();
+                    e.currentTarget.blur();
+                  }
+                }}
+              >
+                {tag}
+              </div>
+            ))}
+            <div
+              className={props.tags.length < 10 ? "tag" : "fOff"}
+              onClick={addTag}
+              id="plusButton"
             >
-              {tag}
+              +
             </div>
-          ))}
-          <div
-            className={props.tags.length < 4 ? "tag" : "fOff"}
-            onClick={addTag}
-            id="plusButton"
-          >
-            +
           </div>
         </div>
         <textarea
@@ -79,7 +92,7 @@ const TextUpload = ({
               value={props.difficulty}
               onChange={(e) => props.setDifficulty(e.target.value)}
             >
-              <option value="Válassz" hidden>
+              <option value="-" hidden>
                 Válassz
               </option>
               <option value="Könnyű">Könnyű</option>
@@ -91,9 +104,10 @@ const TextUpload = ({
             <label htmlFor="lenSelect">Mennyi idő?</label>
             <div id="lenInline">
               <input
-                type="text"
+                type="number"
                 id="lenSelect"
                 value={props.length}
+                maxLength={2}
                 onChange={(e) => props.setLength(Number(e.target.value))}
               />
 
@@ -109,7 +123,7 @@ const TextUpload = ({
             </div>
           </div>
         </div>
-        <input type="button" value="Feltöltés" onClick={props.Click} />
+        <input type="button" value="Feltöltés" onClick={props.Click} className="submitButton"/>
       </form>
     </div>
   );

@@ -24,15 +24,12 @@ function ContentUpload_() {
   const [length, setLength] = useState<number>(0);
   const [lenghtUnit, setLenghtUnit] = useState<string>("");
   const [difficulty, setDifficulty] = useState<string>("");
-  const [tags, setTags] = useState<string[]>([]);
+  const [tags, setTags] = useState<string[]>(["Címke"]);
   const [image, setImage] = useState<File | null>(null);
 
-  if (lenghtUnit == "óra") {
-    setLength(length * 60);
-  }
 
   const uploadBtn_Click = async () => {
-    if (lenghtUnit == "óra") {
+    if (lenghtUnit == "Hour") {
       setLength(length * 60);
     }
     let temp = {

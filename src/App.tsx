@@ -1,6 +1,5 @@
 import Home from './pages/Home'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Upload from './pages/Upload'
 import Saved from './pages/Saved'
 import Own from './pages/Own'
 import Login from './pages/Login'
