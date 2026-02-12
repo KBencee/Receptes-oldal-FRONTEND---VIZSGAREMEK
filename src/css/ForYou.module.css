@@ -1,36 +1,59 @@
 .forYou{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
+
+    .forYouHead{
+        margin-left: 1rem;
+
+        span{
+            margin-left: 2rem;
+            font-size: xx-large;
+            position: relative;
+            top: 0.25rem;
+        }
+    }
 
     section{
+        padding: 1rem 0;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: space-around;
+        gap: 1rem;
         margin: 5vh 0;
-        width: 45vw;
+        width: 47vw;
         height: 90vh;
-        background-color: var(--primary);
+        border: 0.5rem solid var(--secondary);
+        border-radius: var(--border-radius);
 
         img{
             width: 100%;
-            max-height: 450px;
+            max-height: 425px;
         }
     }
 
     .mobileSection{
-        width: 90vh;
+        width: 100%;
+        height: 100vh;
+        border: none;
     }
 
     aside{
         display: flex;
         flex-direction: row;
         justify-content: space-around;
+        align-items: center;
+
+        .likes{
+            display: flex;
+            gap: 1rem;
+        }
 
         i{
             scale: 2;
         }
     }
+
     .tags{
         padding: 0.5rem;
         display: flex;
@@ -43,5 +66,13 @@
         background-color: var(--secondary);
         border-radius: var(--border-radius);
         padding: 0.5rem;
+    }
+
+    .description{
+        padding: 1rem;
+        overflow-y: hidden;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        scroll-behavior: smooth;
     }
 }

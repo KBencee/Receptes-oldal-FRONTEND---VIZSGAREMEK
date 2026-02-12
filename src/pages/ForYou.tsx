@@ -10,29 +10,38 @@ const ForYou = () => {
   const {isMobile} = useMobileContext()
   
   return (
-    <>
-        <HomeBtn/>
-        <div className={styles.forYou}>
-            <section className={isMobile ? styles.mobileSection : ""}>
-                <h1>{recipe?.nev}</h1>
-                <img src={recipe.kepUrl} />
-                <aside>
+    <div className={styles.forYou}>
+        <section className={isMobile ? styles.mobileSection : ""}>
+            <div className={styles.forYouHead}><HomeBtn/><span>{recipe.nev}</span></div>
+            <img src={recipe.kepUrl} />
+            <aside>
+                <div className={styles.likes}>
+                    {recipe.likes}
                     <i className="fa-regular fa-heart"></i>
-                    <i className="fa-regular fa-bookmark"></i>
-                    <i className="fa-solid fa-share"></i>
-                </aside>
-                <div className={styles.tags}>
-                    {recipe.cimkek.map((c,idx) => <span key={idx} className={styles.tag}>{c}</span>)}
                 </div>
-            </section>
-            { !isMobile &&
-            <section>
-                {recipe.hozzavalok}<br/><br/>
-                {recipe.leiras}
-            </section>
-            }
-        </div>
-    </>
+                <i className="fa-regular fa-bookmark"></i>
+                <i className="fa-solid fa-share"></i>
+                {isMobile ? <i className="fa-solid fa-ellipsis"></i> : ""}
+            </aside>
+            <div className={styles.tags}>
+                {recipe.cimkek.map((c,idx) => <span key={idx} className={styles.tag}>{c}</span>)}
+            </div>
+        </section>
+        { !isMobile &&
+          <section className={styles.description}>
+            <h2>{recipe.nev} by {recipe.feltoltoUsername}</h2>
+            <p>Elkészítési idő: {recipe.elkeszitesiIdo} perc</p>
+            <div>
+              <h3>Hozzávalók:</h3>
+              <p>{recipe.hozzavalok}</p>
+            </div>
+            <div>
+              <h3>Leírás:</h3>
+              <p>{recipe.leiras}</p>
+            </div>
+          </section>
+        }
+    </div>
   )
 }
 
