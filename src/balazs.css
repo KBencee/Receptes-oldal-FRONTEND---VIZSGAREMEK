@@ -1,5 +1,17 @@
 #contentUpload {
   display: flex;
+  flex-direction: row;
+  gap: 50px;
+  padding: 50px;
+  background: white;
+  max-width: 1000px;
+  margin: 40px auto;
+  border-radius: 10px;
+}
+
+#contentUploadMobile {
+  display: flex;
+  flex-direction: column;
   gap: 50px;
   padding: 50px;
   background: white;
@@ -40,7 +52,6 @@ html {
   font-weight: 600;
   border: none;
   outline: none;
-  padding-top: 10px;
 }
 
 #tagList {
@@ -54,7 +65,6 @@ html {
   display: flex;
   gap: 10px;
   white-space: nowrap;
-  padding: 10px 0;
   width: 100%;
   max-width: 100%;
   overflow-x: auto;
@@ -82,12 +92,17 @@ html {
   flex-shrink: 0;
   white-space: nowrap;
   cursor: pointer;
+  min-width: 60px;
 }
 
-#setDescription {
+#plusButton{
+  min-width: 0;
+}
+
+textarea {
   resize: none;
-  min-height: 100px;
-  padding: 10px;
+  height: 7em;
+  padding: 5px;
 }
 
 #diffDiv,
@@ -105,7 +120,7 @@ label {
 
 select,
 input[type="text"] {
-  padding: 10px;
+  padding: 5px;
   border-radius: 5px;
   border: 1px solid black;
 }
@@ -116,7 +131,7 @@ input[type="text"] {
 
 input[type="submit"] {
   margin-top: 25px;
-  padding: 10px;
+  padding: 5px;
   border: none;
   border-radius: 10px;
   background: black;
@@ -137,15 +152,9 @@ input[type="submit"]:hover {
 
 #imagePreview,
 #imageUpload {
-  max-width: 300px;
-  max-height: 300px;
-  position: absolute;
+  height: 20em;
 }
 
-.imageUploadDiv {
-  height: 300px;
-  width: 300px;
-}
 
 .fOff {
   display: none;
@@ -159,7 +168,7 @@ input[type="submit"]:hover {
   flex: 1;
   background: rgba(255, 255, 255, 0.388) !important;
   border-radius: 10px;
-  min-height: 300px;
+  min-height: 20em;
 
   display: flex;
   align-items: center;
@@ -178,8 +187,6 @@ input[type="submit"]:hover {
 
 .imageUploadDiv.has-file {
   border: none;
-  min-height: auto;
-  padding: 0;
 }
 
 .submitButton {

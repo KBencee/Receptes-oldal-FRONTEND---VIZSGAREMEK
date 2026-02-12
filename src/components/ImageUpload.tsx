@@ -19,7 +19,6 @@ const ImageUpload = ({
         <input
           type="file"
           id="imageUpload"
-          // accept="image/png, image/jpeg"
           style={{ display: "none" }}
           onChange={(e) => {
             const files = e.target.files;

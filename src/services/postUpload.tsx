@@ -93,41 +93,13 @@ const apitest = async (rawPost: ContentType) => {
   let postToUpload: ApiContentType = {
     Nev: rawPost.title,
     CimkeIds: TagIdList.map((tag) => +tag.id),
-    ElkeszitesiIdo: rawPost.lenght,
-    Hozzavalok: "sample",
+    ElkeszitesiIdo: rawPost.length,
+    Hozzavalok: rawPost.ingredients,
     Leiras: rawPost.description,
     NehezsegiSzint: rawPost.difficulty,
-    Kep: rawPost.image,
+    Kep: rawPost.image
   };
 
-  // const uploadPost = async (token: string, postToUpload: ApiContentType) => {
-  //   try {
-  //     const response = await fetch(`${API_BASE_URL}/Recept/with-image`, {
-  //       method: "POST",
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //       body: JSON.stringify({
-  //         nev: postToUpload.Nev,
-  //         cimkeIds: postToUpload.CimkeIds,
-  //         elkeszitesiIdo: postToUpload.ElkeszitesiIdo,
-  //         hozzavalok: postToUpload.Hozzavalok,
-  //         leiras: postToUpload.Leiras,
-  //         nehezsegiSzint: postToUpload.NehezsegiSzint,
-  //         kep: postToUpload.Kep,
-  //       }),
-  //     });
-
-  //     if (!response.ok) {
-  //       throw new Error("Failed");
-  //     }
-  //     const data = await response.json();
-  //     console.log(data);
-  //     console.log("Sikeres post feltöltés");
-  //   } catch (error) {
-  //     console.error("Error fetching tags:", error);
-  //   }
-  // };
   const uploadPost = async (token: string, postToUpload: ApiContentType) => {
   try {
     const formData = new FormData();

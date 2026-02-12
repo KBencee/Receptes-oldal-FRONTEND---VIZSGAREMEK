@@ -14,10 +14,12 @@ const TextUpload = ({
   setDifficulty: (difficulty: string) => void;
   tags: string[];
   setTags: (tags: string[]) => void;
+  ingredients: string;
+  setIngredients: (ingredients: string) => void;
 }) => {
   const addTag = () => {
     if (props.tags.length < 20) {
-      props.setTags([...props.tags, "Címke"]);
+      props.setTags([...props.tags, "Cimke"]);
     }
   };
   const handleTagEdit = (index: number, newValue: string) => {
@@ -34,6 +36,7 @@ const TextUpload = ({
           placeholder="Add meg a recepted nevét"
           value={props.title}
           onChange={(e) => props.setTitle(e.target.value)}
+          maxLength={100}
         />
         <div id="tagList">
           <div id="innerTagList">
@@ -45,14 +48,23 @@ const TextUpload = ({
                 suppressContentEditableWarning
                 onInput={(e) => {
                   const text = e.currentTarget.textContent || "";
+                  const cleanText = text.replace(/[^a-zA-Z\s]/g, "");
+                  if (text !== cleanText) {
+                    e.currentTarget.textContent = cleanText;
+                  }
                   if (text.length > 16) {
-                    e.currentTarget.textContent = text.slice(0, 16);
+                    e.currentTarget.textContent = cleanText.slice(0, 16);
                     const range = document.createRange();
                     const sel = window.getSelection();
                     range.selectNodeContents(e.currentTarget);
                     range.collapse(false);
                     sel?.removeAllRanges();
                     sel?.addRange(range);
+                  }
+                }}
+                onClick={(e) => {
+                  if (e.currentTarget.textContent == "Cimke") {
+                    e.currentTarget.textContent = "";
                   }
                 }}
                 onBlur={(e) =>
@@ -64,6 +76,12 @@ const TextUpload = ({
                     e.currentTarget.blur();
                   }
                 }}
+                onContextMenu={(e) => {
+                  e.preventDefault();
+                  const updatedTags = [...props.tags];
+                  updatedTags.splice(index, 1);
+                  props.setTags(updatedTags);
+                }}
               >
                 {tag}
               </div>
@@ -72,6 +90,9 @@ const TextUpload = ({
               className={props.tags.length < 10 ? "tag" : "fOff"}
               onClick={addTag}
               id="plusButton"
+              onContextMenu={(e) => {
+                  e.preventDefault();
+                }}
             >
               +
             </div>
@@ -82,6 +103,14 @@ const TextUpload = ({
           placeholder="Írd le a receptedet"
           value={props.description}
           onChange={(e) => props.setDescription(e.target.value)}
+          maxLength={10000}
+        ></textarea>
+        <textarea
+          id="setIngredients"
+          placeholder="Add meg a hozzávalókat"
+          value={props.ingredients}
+          onChange={(e) => props.setIngredients(e.target.value)}
+          maxLength={10000}
         ></textarea>
         <div id="diffLenDiv">
           <div id="diffDiv">
@@ -104,11 +133,16 @@ const TextUpload = ({
             <label htmlFor="lenSelect">Mennyi idő?</label>
             <div id="lenInline">
               <input
-                type="number"
+                type="text"
                 id="lenSelect"
                 value={props.length}
                 maxLength={2}
-                onChange={(e) => props.setLength(Number(e.target.value))}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (/^\d*$/.test(value)) {
+                    props.setLength(Number(value) || 0);
+                  }
+                }}
               />
 
               <select
@@ -123,7 +157,12 @@ const TextUpload = ({
             </div>
           </div>
         </div>
-        <input type="button" value="Feltöltés" onClick={props.Click} className="submitButton"/>
+        <input
+          type="button"
+          value="Feltöltés"
+          onClick={props.Click}
+          className="submitButton"
+        />
       </form>
     </div>
   );

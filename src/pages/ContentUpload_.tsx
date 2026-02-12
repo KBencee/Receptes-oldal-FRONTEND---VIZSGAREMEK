@@ -1,49 +1,41 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import ImageUpload from "../components/ImageUpload";
 import TextUpload from "../components/TextUpload";
-import type { ContentType } from "../types/ContentType";
 import apitest from "../services/postUpload";
 import Navbar from "../components/Navbar";
+import type { ContentType } from "../types/ContentType";
+import { useMobileContext } from "../context/MobileContextProvider";
 
 
 function ContentUpload_() {
-  const [newPost, setNewPost] = useState<ContentType>({
-    title: "",
-    id: Math.floor(Math.random() * 10000),
-    uploader: "currentUser",
-    uploadTime: new Date(),
-    description: "",
-    image: "",
-    lenght: 0,
-    difficulty: "",
-    tags: [],
-  });
 
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [length, setLength] = useState<number>(0);
   const [lenghtUnit, setLenghtUnit] = useState<string>("");
   const [difficulty, setDifficulty] = useState<string>("");
-  const [tags, setTags] = useState<string[]>(["Címke"]);
+  const [tags, setTags] = useState<string[]>(["Cimke"]);
   const [image, setImage] = useState<File | null>(null);
-
+  const [ingredients, setIngredients] = useState<string>("");
+  const {isMobile} = useMobileContext();
 
   const uploadBtn_Click = async () => {
+    let trueLength: number = length;
     if (lenghtUnit == "Hour") {
-      setLength(length * 60);
+      trueLength = length * 60;
     }
-    let temp = {
+    let temp: ContentType = {
       title: title,
       id: Math.floor(Math.random() * 10000),
       uploader: "currentUser",
       uploadTime: new Date(),
       description: description,
       image: image ?? "",
-      lenght: length,
+      length: trueLength,
       difficulty: difficulty,
       tags: tags,
+      ingredients: ingredients,
     };
-    setNewPost(temp);
     console.log(temp);
     apitest(temp);
   };
@@ -51,7 +43,7 @@ function ContentUpload_() {
   return (
     <>
       <Navbar/>
-      <div id="contentUpload">
+      <div id={isMobile ? "contentUploadMobile" : "contentUpload"}>
         <ImageUpload 
         image={image}
         setImage={setImage}
@@ -70,6 +62,8 @@ function ContentUpload_() {
           setDifficulty={setDifficulty}
           tags={tags}
           setTags={setTags}
+          ingredients={ingredients}
+          setIngredients={setIngredients}
         />
       </div>
     </>
