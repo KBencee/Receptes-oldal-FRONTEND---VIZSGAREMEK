@@ -1,9 +1,12 @@
-import Navbar from '../components/Navbar'
+import Navbar from "../components/Navbar";
 
 const Own = () => {
   return (
-    <Navbar/>
-  )
-}
+    <>
+      <Navbar />
+      <p>Own page</p>
+    </>
+  );
+};
 
-export default Own
+export default Own;

@@ -6,6 +6,8 @@ import Navbar from "../components/Navbar";
 import type { ContentType } from "../types/ContentType";
 import { useMobileContext } from "../context/MobileContextProvider";
 import UploadAlert from "../components/UploadAlert";
+import { useNavigate } from "react-router-dom";
+import { menuItems, setActive } from "../components/NavMiddle";
 
 function ContentUpload_() {
   const [title, setTitle] = useState<string>("");
@@ -19,36 +21,60 @@ function ContentUpload_() {
   const { isMobile } = useMobileContext();
   const [buttonClicked, setButtonClicked] = useState<boolean>(false);
 
+  const isPostReady = () => {
+    return (
+      title.trim() !== "" &&
+      description.trim() !== "" &&
+      length > 0 &&
+      difficulty.trim() !== "" &&
+      ingredients.trim() !== ""
+    );
+  };
+  const navigate = useNavigate();
+  const goToOwn = () => {
+    navigate("/own");
+    setActive(menuItems[1].name);
+  };
   const uploadBtn_Click = async () => {
     setButtonClicked(true);
     let trueLength: number = length;
     if (lenghtUnit == "Hour") {
       trueLength = length * 60;
     }
+    let trueTagList : string[] = [];
+    tags.forEach((tag) => {
+      if(tag.trim() !== "" || tag.trim().toLowerCase() !== "cimke"){
+        trueTagList.push(tag.trim());
+      }
+    });
     let temp: ContentType = {
       title: title,
-      id: Math.floor(Math.random() * 10000),
-      uploader: "currentUser",
-      uploadTime: new Date(),
       description: description,
       image: image ?? "",
       length: trueLength,
       difficulty: difficulty,
-      tags: tags,
+      tags: trueTagList,
       ingredients: ingredients,
     };
     console.log(temp);
     // apitest(temp);
   };
 
+  const notReadyClick = () => {
+    setButtonClicked(true);
+  };
+
   return (
     <>
       <Navbar />
       <div id={isMobile ? "contentUploadMobile" : "contentUpload"}>
-        {!buttonClicked && <ImageUpload image={image} setImage={setImage} />}
-        {!buttonClicked && (
+        { (
+          <ImageUpload image={image} setImage={setImage} />
+        )}
+        { (
           <TextUpload
             Click={uploadBtn_Click}
+            notReadyClick={notReadyClick}
             title={title}
             setTitle={setTitle}
             description={description}
@@ -65,10 +91,22 @@ function ContentUpload_() {
             setIngredients={setIngredients}
           />
         )}
-        {buttonClicked && (
+        {buttonClicked && isPostReady() && (
           <>
-            <div id="alertOverlay"/>
-            <UploadAlert />
+            <div id="alertOverlay" />
+            <UploadAlert
+              text="Recepted feltöltése sikeres!"
+              onClick={goToOwn}
+            />
+          </>
+        )}
+        {buttonClicked && !isPostReady() && (
+          <>
+            <div id="alertOverlay" />
+            <UploadAlert
+              text="Töltsd ki az összes mezőt a feltöltéshez!"
+              onClick={() => setButtonClicked(false)}
+            />
           </>
         )}
       </div>

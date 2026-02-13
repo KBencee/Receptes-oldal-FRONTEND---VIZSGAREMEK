@@ -1,7 +1,10 @@
+import { useState } from "react";
+
 const TextUpload = ({
   ...props
 }: {
   Click: () => void;
+  notReadyClick: () => void;
   title: string;
   setTitle: (title: string) => void;
   description: string;
@@ -27,6 +30,17 @@ const TextUpload = ({
     updatedTags[index] = newValue;
     props.setTags(updatedTags);
   };
+
+  const isPostReady = () => {
+    return (
+      props.title.trim() !== "" &&
+      props.description.trim() !== "" &&
+      props.length > 0 &&
+      props.difficulty.trim() !== "" &&
+      props.ingredients.trim() !== ""
+    );
+  }
+
   return (
     <div id="textContDiv">
       <form id="textCont">
@@ -160,8 +174,9 @@ const TextUpload = ({
         <input
           type="button"
           value="Feltöltés"
-          onClick={props.Click}
-          className="submitButton"
+          onClick={isPostReady() ? props.Click : props.notReadyClick}
+          className="uploadButton"
+          disabled={!isPostReady()}
         />
       </form>
     </div>
