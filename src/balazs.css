@@ -1,5 +1,6 @@
 #contentUpload {
   display: flex;
+  flex-direction: row;
   gap: 50px;
   padding: 50px;
   background: white;
@@ -8,8 +9,19 @@
   border-radius: 10px;
 }
 
-main {
-  font-family: Arial, Helvetica, sans-serif;
+#contentUploadMobile {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding: 50px;
+  background: white;
+  max-width: 1000px;
+  margin: 40px auto;
+  border-radius: 10px;
+}
+
+html {
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 #diffLenDiv {
@@ -27,7 +39,8 @@ main {
 }
 
 #lenSelect {
-  width: 2em;
+  width: 2.8em;
+  text-align: center;
 }
 
 #textContDiv {
@@ -39,19 +52,22 @@ main {
   font-weight: 600;
   border: none;
   outline: none;
-  padding-top: 10px;
 }
 
 #tagList {
+  
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width: 18em;
+}
+
+#innerTagList {
   display: flex;
   gap: 10px;
-  overflow-x: auto;
-  overflow-y: hidden;
   white-space: nowrap;
-  padding: 10px 0;
   width: 100%;
   max-width: 100%;
-
+  overflow-x: auto;
 }
 
 #tagList::-webkit-scrollbar {
@@ -68,21 +84,25 @@ main {
 }
 
 .tag {
-  background: rgb(109, 245, 141);
-  color: green;
+  background: #8B5E3C;
+  color: #f1b67b;
   padding: 5px 10px;
   border-radius: 10px;
   font-size: 15px;
   flex-shrink: 0;
   white-space: nowrap;
   cursor: pointer;
+  min-width: 60px;
 }
 
-#setDescription {
+#plusButton{
+  min-width: 0;
+}
+
+textarea {
   resize: none;
-  min-height: 100px;
-  padding: 10px;
-  font-family: inherit;
+  height: 7em;
+  padding: 5px;
 }
 
 #diffDiv,
@@ -100,7 +120,7 @@ label {
 
 select,
 input[type="text"] {
-  padding: 10px;
+  padding: 5px;
   border-radius: 5px;
   border: 1px solid black;
 }
@@ -109,19 +129,27 @@ input[type="text"] {
   width: 80px;
 }
 
-input[type="submit"] {
+.uploadButton {
   margin-top: 25px;
-  padding: 10px;
+  padding: 5px;
   border: none;
   border-radius: 10px;
-  background: black;
-  color: white;
+  background: #8B5E3C;
+  color: #f1b67b;
   font-size: 15px;
   cursor: pointer;
 }
 
-input[type="submit"]:hover {
+.uploadButton:hover {
   background: black;
+  color: white;
+  transition: 200ms;
+}
+
+.uploadButton:disabled {
+  background: lightgray;
+  color: white;
+  cursor: default;
 }
 
 #lenInline {
@@ -132,18 +160,14 @@ input[type="submit"]:hover {
 
 #imagePreview,
 #imageUpload {
-  max-width: 300px;
-  max-height: 300px;
-  position: absolute;
+  height: 20em;
+  max-width: 100%;
 }
 
-.imageUploadDiv {
-  height: 300px;
-  width: 300px;
-}
 
 .fOff {
   display: none;
+  width: 0;
 }
 
 .noBorderForImageUploadDiv {
@@ -154,7 +178,8 @@ input[type="submit"]:hover {
   flex: 1;
   background: rgba(255, 255, 255, 0.388) !important;
   border-radius: 10px;
-  min-height: 300px;
+  min-height: 20em;
+  max-height: 20em;
 
   display: flex;
   align-items: center;
@@ -173,6 +198,49 @@ input[type="submit"]:hover {
 
 .imageUploadDiv.has-file {
   border: none;
-  min-height: auto;
-  padding: 0;
 }
+
+.submitButton {
+  margin-top: 25px;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background: #8B5E3C;
+  color: #f1b67b;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+#UploadAlertBox {
+  text-align: center; 
+  position: fixed; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  background: white; 
+  padding: 20px; 
+  border-radius: 10px; 
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+  z-index: 1000; } 
+
+  #UploadAlertBox p {
+     margin: 0; } 
+    
+  #UploadAlertBox input[type="button"] {
+     margin-top: 15px; 
+     padding: 5px; 
+     border: none; 
+     border-radius: 10px; 
+     background: #8B5E3C; 
+     color: #f1b67b; 
+     font-size: 15px; 
+     cursor: pointer; }
+
+#alertOverlay {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  background: rgba(0, 0, 0, 0.5); 
+  z-index: 999; }
