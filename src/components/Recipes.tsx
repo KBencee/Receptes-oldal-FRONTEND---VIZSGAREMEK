@@ -1,7 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
 import createRecipeQueryOption from '../queryOptions/createRecipeQueryOption'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import styles from '../css/Recipes.module.css'
 import RecipeCard from './RecipeCard'
 
@@ -12,7 +10,7 @@ const Recipes = () => {
     <div className={styles.recipes}>
         <h1>Legújabb receptek</h1>
         <div className={styles.recipeCardContainer}>
-          {isPending && <FontAwesomeIcon icon={faSpinner} spin/>}
+          {isPending && <h1><i className="fa-solid fa-spinner fa-spin fa-2xl"></i></h1>}
           {isFetched && data?.map((recipe) => (<RecipeCard {...recipe} key={recipe.id} />))}
           {isError && <h1>Hiba</h1>}
         </div>
