@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Saved from './pages/Saved'
 import Own from './pages/Own'
 import Login from './pages/Login'
-import LoginContextProvider from './context/LoginContextProvider'
 import MobileContextProvider from './context/MobileContextProvider'
 import Signup from './pages/Signup'
 import ForYou from './pages/ForYou'
@@ -12,7 +11,6 @@ import AuthenticatedUserContextProvider from './context/AuthenticatedUserContext
 
 const App = () => {
 	return (
-		<LoginContextProvider>
 		<MobileContextProvider>
 		<AuthenticatedUserContextProvider>
 			<BrowserRouter>
@@ -28,7 +26,6 @@ const App = () => {
 			</BrowserRouter>
 		</AuthenticatedUserContextProvider>
 		</MobileContextProvider>
-		</LoginContextProvider>
 	)
 }
 
