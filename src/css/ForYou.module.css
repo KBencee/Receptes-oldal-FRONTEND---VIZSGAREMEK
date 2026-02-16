@@ -68,11 +68,33 @@
         padding: 0.5rem;
     }
 
-    .description{
+    .data{
         padding: 1rem;
+        text-align: center;
+    }
+    
+    .description{
+        text-align: justify;
         overflow-y: hidden;
         overflow-y: scroll;
-        scrollbar-width: none;
         scroll-behavior: smooth;
+        scrollbar-width: none;
+    }
+
+    .arrow{
+        text-align: center;
     }
 }
+/* 
+::-webkit-scrollbar{
+    width: 7px;
+}
+::-webkit-scrollbar-track{
+    margin: 15px;
+}
+
+::-webkit-scrollbar-thumb{
+    width: 20px;
+    background-color: var(--font);
+    border-radius: 2rem;
+} */

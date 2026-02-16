@@ -29,6 +29,7 @@
     label{
         width: 70%;
         border-bottom: 2px solid var(--primary);
+        color: var(--font);
         input{
             width: 100%;
             background: transparent;

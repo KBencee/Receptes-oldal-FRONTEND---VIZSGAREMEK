@@ -3,11 +3,14 @@ import type { RecipeType } from "../queryOptions/createRecipeQueryOption"
 import styles from '../css/ForYou.module.css'
 import { useMobileContext } from "../context/MobileContextProvider"
 import HomeBtn from "../components/HomeBtn"
+import DescriptionCommentToggleBtn from "../components/DescriptionCommentToggleBtn"
+import { useState } from "react"
 
 const ForYou = () => {
-  const location = useLocation()
-  const recipe = location.state?.recipe as RecipeType
-  const {isMobile} = useMobileContext()
+    const location = useLocation()
+    const recipe = location.state?.recipe as RecipeType
+    const {isMobile} = useMobileContext()
+    const [isDescription, setIsDescription] = useState<boolean>(true)
   
   return (
     <div className={styles.forYou}>
@@ -28,18 +31,25 @@ const ForYou = () => {
             </div>
         </section>
         { !isMobile &&
-          <section className={styles.description}>
-            <h2>{recipe.nev} by {recipe.feltoltoUsername}</h2>
-            <p>Elkészítési idő: {recipe.elkeszitesiIdo} perc</p>
-            <div>
-              <h3>Hozzávalók:</h3>
-              <p>{recipe.hozzavalok}</p>
-            </div>
-            <div>
-              <h3>Leírás:</h3>
-              <p>{recipe.leiras}</p>
-            </div>
-          </section>
+            <section className={styles.data}>
+                <DescriptionCommentToggleBtn description={isDescription} setDescription={setIsDescription}/>
+                <h2>{recipe.nev} by {recipe.feltoltoUsername}</h2>
+                {isDescription ? 
+                    <>
+                        <p>Elkészítési idő: {recipe.elkeszitesiIdo} perc</p>
+                        <h3>Hozzávalók:</h3>
+                        <p>{recipe.hozzavalok}</p>
+                        <h3>Leírás:</h3>
+                        <div className={styles.description}>
+                            <p>{recipe.leiras}</p>
+                        </div>
+                        <div className={styles.arrow}>
+                            <i className="fa-solid fa-angle-down fa-bounce"></i>
+                        </div>
+                    </>
+                :
+                    <p>Comments</p>}
+            </section>
         }
     </div>
   )
