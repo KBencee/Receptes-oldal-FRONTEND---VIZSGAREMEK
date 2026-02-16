@@ -9,7 +9,7 @@ const Profil = () => {
     console.log(authUser)
   return (
     <div>
-        {!authUser ? <Link to="/login" style={{textAlign:"right"}}>Bejelentkezés</Link> : <p>{authUser.authUser.username}</p>}
+        {!authUser ? <Link to="/login" style={{textAlign:"right"}}>Bejelentkezés</Link> : <img src={authUser.authUser.profileImageUrl ? authUser.authUser.profileImageUrl : "profile.webp"} alt={authUser.authUser.username} title={authUser.authUser.username}/>}
         {isLogin && <p style={{textAlign:"right"}}>Kijelentkezés</p>}
     </div>
   )

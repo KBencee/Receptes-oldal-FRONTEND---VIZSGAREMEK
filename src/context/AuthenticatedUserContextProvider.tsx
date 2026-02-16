@@ -4,7 +4,8 @@ import { getUserData } from "../services/protectedAPI"
 type AuthUserType= {
     id: number,
     username: string,
-    role: string
+    role: string,
+    profileImageUrl: string
 }
 
 export const AuthUserContext = createContext<{authUser: AuthUserType} | undefined>(undefined)
