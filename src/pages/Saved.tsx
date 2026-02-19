@@ -1,9 +1,12 @@
-import Navbar from '../components/Navbar'
+import Navbar from "../components/Navbar";
 
 const Saved = () => {
   return (
-    <Navbar/>
-  )
-}
+    <>
+      <Navbar />
+      <p>Saved page</p>
+    </>
+  );
+};
 
-export default Saved
+export default Saved;
