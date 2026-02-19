@@ -1,17 +1,46 @@
 import { useLocation } from "react-router-dom"
-import type { RecipeType } from "../queryOptions/createRecipeQueryOption"
+import { createRecipeCommentsQueryOption, getNextRecipe, type RecipeType } from "../queryOptions/createRecipeQueryOption"
 import styles from '../css/ForYou.module.css'
 import { useMobileContext } from "../context/MobileContextProvider"
 import HomeBtn from "../components/HomeBtn"
 import DescriptionCommentToggleBtn from "../components/DescriptionCommentToggleBtn"
-import { useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
+import { useQuery } from "@tanstack/react-query"
+import Comment from "../components/Comment"
+import { AuthUserContext } from "../context/AuthenticatedUserContextProvider"
 
 const ForYou = () => {
     const location = useLocation()
-    const recipe = location.state?.recipe as RecipeType
+    const [recipe, setRecipe] = useState<RecipeType>(location.state.recipe as RecipeType)
     const {isMobile} = useMobileContext()
     const [isDescription, setIsDescription] = useState<boolean>(true)
-  
+    const {data} = useQuery(createRecipeCommentsQueryOption(recipe.id))
+    const authUser = useContext(AuthUserContext)
+
+    console.log(recipe.id)  
+
+    const readNextRecipe = () => {
+        getNextRecipe(recipe.id)
+        .then(response => {setRecipe(response)})
+    }
+
+    const lastScrollY = useRef(0);
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > lastScrollY.current) {
+                console.log('Scrolling DOWN');
+                readNextRecipe();
+            } else {
+                console.log('Scrolling UP');
+            }
+            lastScrollY.current = window.scrollY;
+        };
+
+        window.addEventListener('scrollend', handleScroll);
+        return () => window.removeEventListener('scrollend', handleScroll);
+    }, []);
+
+
   return (
     <div className={styles.forYou}>
         <section className={isMobile ? styles.mobileSection : ""}>
@@ -48,7 +77,21 @@ const ForYou = () => {
                         </div>
                     </>
                 :
-                    <p>Comments</p>}
+                    <div className={styles.comments}>
+                        {data?.map(c => <Comment key={c.id} {...c}/>)}
+                    </div>
+                }
+                {
+                    authUser && !isDescription &&
+                    <div>
+                        <h2>Írjon kommentet:</h2>
+                        <div className={styles.sendComment}>
+                            <input type="text" name="comment"/>
+                            <button><i className="fa-solid fa-paper-plane fa-xl"></i></button>
+                        </div>
+                    </div>
+                }
+
             </section>
         }
     </div>

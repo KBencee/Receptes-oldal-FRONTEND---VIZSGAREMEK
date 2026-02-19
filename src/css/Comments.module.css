@@ -1,7 +1,3 @@
-.comments{
-    height: 60vh;
-}
-
 .comment{
     border-bottom: 2px solid var(--primary);
     text-align: left;
@@ -9,19 +5,5 @@
     line-height: 1.5rem;
     h6{
         text-align: right;
-    }
-}
-
-.sendComment{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: center;
-    gap: 1rem;
-
-    button{
-        background: none;
-        border: none;
-        color: var(--font);
     }
 }
