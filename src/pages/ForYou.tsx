@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom"
-import { createRecipeCommentsQueryOption, getNextRecipe, type RecipeType } from "../queryOptions/createRecipeQueryOption"
+import { createRecipeCommentsQueryOption, getNextRecipe, getPreviusRecipe, type RecipeType } from "../queryOptions/createRecipeQueryOption"
 import styles from '../css/ForYou.module.css'
 import { useMobileContext } from "../context/MobileContextProvider"
 import HomeBtn from "../components/HomeBtn"
@@ -24,22 +24,39 @@ const ForYou = () => {
         .then(response => {setRecipe(response)})
     }
 
+    const readPreviousRecipe = () => {
+        getPreviusRecipe(recipe.id)
+        .then(response => {setRecipe(response)})
+    }
+
+
     const lastScrollY = useRef(0);
+    const isInitialScroll = useRef(true);
+
     useEffect(() => {
+        window.scrollTo(0, 1);
+        isInitialScroll.current = true;
+        
         const handleScroll = () => {
+            if (isInitialScroll.current) {
+                isInitialScroll.current = false;
+                lastScrollY.current = window.scrollY;
+                return;
+            }
+            
             if (window.scrollY > lastScrollY.current) {
                 console.log('Scrolling DOWN');
                 readNextRecipe();
-            } else {
+            } else if (window.scrollY < lastScrollY.current) {
                 console.log('Scrolling UP');
+                readPreviousRecipe();
             }
             lastScrollY.current = window.scrollY;
         };
 
         window.addEventListener('scrollend', handleScroll);
         return () => window.removeEventListener('scrollend', handleScroll);
-    }, []);
-
+    }, [recipe.id]);
 
   return (
     <div className={styles.forYou}>

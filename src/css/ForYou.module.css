@@ -3,7 +3,7 @@
     flex-direction: row;
     justify-content: space-evenly;
     overflow-y: scroll;
-    height: 100.1vh;
+    height: 100.3vh;
     scrollbar-width: none;
 
     .forYouHead{
@@ -79,7 +79,6 @@
     
     .description{
         text-align: justify;
-        overflow-y: hidden;
         overflow-y: scroll;
         scroll-behavior: smooth;
         scrollbar-width: none;
