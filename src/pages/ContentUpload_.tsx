@@ -1,7 +1,7 @@
-import { useContext, useRef, useState } from "react";
+import { useState } from "react";
 import ImageUpload from "../components/ImageUpload";
 import TextUpload from "../components/TextUpload";
-import apitest from "../services/postUpload";
+import postUpload from "../services/postUpload";
 import Navbar from "../components/Navbar";
 import type { ContentType } from "../types/ContentType";
 import { useMobileContext } from "../context/MobileContextProvider";
@@ -56,8 +56,7 @@ function ContentUpload_() {
       tags: trueTagList,
       ingredients: ingredients,
     };
-    console.log(temp);
-    // apitest(temp);
+    // postUpload(temp);
   };
 
   const notReadyClick = () => {

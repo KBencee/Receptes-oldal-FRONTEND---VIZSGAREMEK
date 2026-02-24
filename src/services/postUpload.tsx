@@ -3,7 +3,9 @@ import type { ApiContentType } from "../types/ApiContentType";
 
 const API_BASE_URL = "https://cbnncff2-7114.euw.devtunnels.ms/api";
 let allTags: { cimkeNev: string }[] = [];
-const apitest = async (rawPost: ContentType) => {
+const accessToken = localStorage.getItem("access") || "";
+
+const postUpload = async (rawPost: ContentType) => {
   let TagIdList: { id: number }[] = [];
   try {
     const response = await fetch(`${API_BASE_URL}/Cimkek`);
@@ -13,7 +15,6 @@ const apitest = async (rawPost: ContentType) => {
     }
 
     allTags = await response.json();
-    console.log(allTags);
   } catch (error) {
     console.error("Error:", error);
   }
@@ -52,26 +53,8 @@ const apitest = async (rawPost: ContentType) => {
       console.error("Error fetching tags:", error);
     }
   };
-  const login = async () => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/Auth/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username: "balazs", password: "jelszav" }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed");
-      }
-      const data = await response.json();
-      return data.accessToken;
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
-  console.log(login());
+  
+  console.log(accessToken);
   if (rawPost.tags && rawPost.tags.length > 0) {
     for (let index = 0; index < rawPost.tags.length; index++) {
       for (let i = 0; i < allTags.length; i++) {
@@ -81,7 +64,7 @@ const apitest = async (rawPost: ContentType) => {
         }
       }
       if ((await checkIfTagExists(rawPost.tags[index])) == false) {
-        uploadTag(await login(), rawPost.tags[index]);
+        uploadTag(accessToken, rawPost.tags[index]);
         console.log("feltöltve");
       } else {
         console.log("nem kell feltölteni");
@@ -148,7 +131,7 @@ const apitest = async (rawPost: ContentType) => {
     throw error;
   }
 };
-  uploadPost(await login(), postToUpload);
+  uploadPost(accessToken, postToUpload);
 };
 
-export default apitest;
+export default postUpload;
