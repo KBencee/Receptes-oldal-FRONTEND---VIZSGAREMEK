@@ -1,34 +1,23 @@
 import { useLocation } from "react-router-dom"
-import { createRecipeCommentsQueryOption, getNextRecipe, getPreviusRecipe, type RecipeType } from "../queryOptions/createRecipeQueryOption"
+import { createNextRecipeQueryOption, createPrevRecipeQueryOption, createRecipeCommentsQueryOption, type RecipeType } from "../queryOptions/createRecipeQueryOption"
 import styles from '../css/ForYou.module.css'
 import { useMobileContext } from "../context/MobileContextProvider"
-import HomeBtn from "../components/HomeBtn"
 import DescriptionCommentToggleBtn from "../components/DescriptionCommentToggleBtn"
 import { useContext, useEffect, useRef, useState } from "react"
 import { useQuery } from "@tanstack/react-query"
 import Comment from "../components/Comment"
 import { AuthUserContext } from "../context/AuthenticatedUserContextProvider"
+import ForYouReel from "../components/ForYouReel"
 
 const ForYou = () => {
     const location = useLocation()
     const [recipe, setRecipe] = useState<RecipeType>(location.state.recipe as RecipeType)
     const {isMobile} = useMobileContext()
     const [isDescription, setIsDescription] = useState<boolean>(true)
-    const {data} = useQuery(createRecipeCommentsQueryOption(recipe.id))
+    const comments = useQuery(createRecipeCommentsQueryOption(recipe.id))
     const authUser = useContext(AuthUserContext)
-
-    console.log(recipe.id)  
-
-    const readNextRecipe = () => {
-        getNextRecipe(recipe.id)
-        .then(response => {setRecipe(response)})
-    }
-
-    const readPreviousRecipe = () => {
-        getPreviusRecipe(recipe.id)
-        .then(response => {setRecipe(response)})
-    }
-
+    const next = useQuery(createNextRecipeQueryOption(recipe.id))
+    const prev = useQuery(createPrevRecipeQueryOption(recipe.id))
 
     const lastScrollY = useRef(0);
     const isInitialScroll = useRef(true);
@@ -46,36 +35,24 @@ const ForYou = () => {
             
             if (window.scrollY > lastScrollY.current) {
                 console.log('Scrolling DOWN');
-                readNextRecipe();
-            } else if (window.scrollY < lastScrollY.current) {
+                if (prev.data)
+                    setRecipe(prev.data as RecipeType)
+            } 
+            else if (window.scrollY < lastScrollY.current) {
                 console.log('Scrolling UP');
-                readPreviousRecipe();
+                if (next.data)
+                    setRecipe(next.data as RecipeType)
             }
             lastScrollY.current = window.scrollY;
         };
 
         window.addEventListener('scrollend', handleScroll);
         return () => window.removeEventListener('scrollend', handleScroll);
-    }, [recipe.id]);
+    }, [recipe.id, next.data]);
 
   return (
     <div className={styles.forYou}>
-        <section className={isMobile ? styles.mobileSection : ""}>
-            <div className={styles.forYouHead}><HomeBtn/><span>{recipe.nev}</span></div>
-            <img src={recipe.kepUrl} />
-            <aside>
-                <div className={styles.likes}>
-                    {recipe.likes}
-                    <i className="fa-regular fa-heart"></i>
-                </div>
-                <i className="fa-regular fa-bookmark"></i>
-                <i className="fa-solid fa-share"></i>
-                {isMobile ? <i className="fa-solid fa-ellipsis"></i> : ""}
-            </aside>
-            <div className={styles.tags}>
-                {recipe.cimkek.map((c,idx) => <span key={idx} className={styles.tag}>{c}</span>)}
-            </div>
-        </section>
+        <ForYouReel {...recipe}/>
         { !isMobile &&
             <section className={styles.data}>
                 <DescriptionCommentToggleBtn description={isDescription} setDescription={setIsDescription}/>
@@ -95,7 +72,7 @@ const ForYou = () => {
                     </>
                 :
                     <div className={styles.comments}>
-                        {data?.map(c => <Comment key={c.id} {...c}/>)}
+                        {comments.data?.map(c => <Comment key={c.id} {...c}/>)}
                     </div>
                 }
                 {
@@ -108,7 +85,6 @@ const ForYou = () => {
                         </div>
                     </div>
                 }
-
             </section>
         }
     </div>

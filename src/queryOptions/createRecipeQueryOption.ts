@@ -40,10 +40,10 @@ export function createNextRecipeQueryOption(id: string) {
     })
 }
 
-export function createRegisterQueryOption(username: string, password: string) {
+export function createPrevRecipeQueryOption(id: string) {
     return queryOptions({
-        queryKey: ['register', username, password],
-        queryFn: () => register(username, password)
+        queryKey: ['prev', id],
+        queryFn: () => getPrevRecipe(id)
     })
 }
 
@@ -54,27 +54,22 @@ export function createRecipeCommentsQueryOption(id: string) {
     })
 }
 
-export const getRecipes = async () : Promise<RecipeType[]> => {
+const getRecipes = async () : Promise<RecipeType[]> => {
   const response = await axios.get(BASE_URL + "/api/Recept")
   return await response.data
 }
 
-export const getNextRecipe = async (id: string) : Promise<RecipeType> => {
+const getNextRecipe = async (id: string) : Promise<RecipeType> => {
   const response = await axios.get(BASE_URL + `/api/Recept/${id}/next`)
   return await response.data
 }
 
-export const getPreviusRecipe = async (id: string) : Promise<RecipeType> => {
+const getPrevRecipe = async (id: string) : Promise<RecipeType> => {
   const response = await axios.get(BASE_URL + `/api/Recept/${id}/next?direction=prev`)
   return await response.data
 }
 
-export const getRecipeComments = async (id: string) : Promise<CommentType[]> => {
+const getRecipeComments = async (id: string) : Promise<CommentType[]> => {
   const response = await axios.get(BASE_URL + `/api/Komment/recept/${id}`)
   return await response.data
-}
-
-const register = async (username: string, password: string) => {
-    const response = await axios.post(BASE_URL + "/api/Auth/register", {username, password})
-    return await response.data
 }
