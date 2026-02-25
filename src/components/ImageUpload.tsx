@@ -4,17 +4,17 @@ import { useState } from "react";
 const ImageUpload = ({
   ...props
 }: {
-  image: File | null
+  image: File | null | string
   setImage: (image: File | null) => void
+  imagePath_?: string
  }) => {
-  const [imagePath, setImagePath] = useState<string>("");
-  const [fileSelected, setFileSelected] = useState<boolean>(false);
+  const [imagePath, setImagePath] = useState<string>(props.imagePath_ || (typeof props.image === "string" ? props.image : ""));
   return (
     <div
-      className={`imageUploadDiv ${fileSelected ? "has-file" : ""}`}
+      className={`imageUploadDiv ${props.image ? "has-file" : ""}`}
       onClick={() => document.getElementById("imageUpload")?.click()}
     >
-      <div style={{ display: fileSelected ? "none" : "block" }}>
+      <div style={{ display: props.image ? "none" : "block" }}>
         <p>Kattints ide a kép feltöltéséhez</p>
         <input
           type="file"
@@ -27,7 +27,6 @@ const ImageUpload = ({
               const file = files[0];
               const objectUrl = URL.createObjectURL(file);
               setImagePath(objectUrl);
-              setFileSelected(true);
               if (props.setImage) props.setImage(file);
             }
           }}
@@ -37,7 +36,7 @@ const ImageUpload = ({
         src={imagePath}
         alt="Preview"
         id="imagePreview"
-        style={{ display: fileSelected ? "block" : "none" }}
+        style={{ display: props.image ? "block" : "none" }}
       />
     </div>
   );

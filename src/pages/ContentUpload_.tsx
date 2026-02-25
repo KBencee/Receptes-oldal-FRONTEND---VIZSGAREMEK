@@ -68,7 +68,7 @@ function ContentUpload_() {
       <Navbar />
       <div id={isMobile ? "contentUploadMobile" : "contentUpload"}>
         { (
-          <ImageUpload image={image} setImage={setImage} />
+          <ImageUpload image={image} setImage={setImage} imagePath_={""} />
         )}
         { (
           <TextUpload
