@@ -1,0 +1,19 @@
+.profile{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn{
+    background-color: transparent;
+    color: var(--font);
+    padding: 0.25rem;
+    border: 2px solid var(--primary);
+    border-radius: var(--border-radius);
+    transition: 0.3s;
+}
+
+.btn:hover{
+    background-color: var(--primary);
+    color: var(--secondary);
+}

@@ -1,15 +1,14 @@
 import NavMiddle from './NavMiddle'
 import styles from '../css/Nav.module.css'
-import Profil from './Profil'
+import Profile from './Profile'
 
 const Navbar = () => {
 
   return (
     <div className={styles.navbar}>
         <div>Logo</div>
-
         <NavMiddle/>
-        <Profil/>
+        <Profile/>
     </div>
   )
 }
