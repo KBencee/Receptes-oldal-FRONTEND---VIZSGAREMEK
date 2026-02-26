@@ -12,8 +12,16 @@ const Profile = () => {
 
   return (
     <div className={styles.profile}>
-		{authUser && <button className={styles.btn} onClick={logout}>Kijelentkezés</button>}
-        {!authUser ? <Link to="/login" style={{textAlign:"right"}}>Bejelentkezés</Link> : <img src={authUser.authUser.profileImageUrl ? authUser.authUser.profileImageUrl : "Profilee.webp"} alt={authUser.authUser.username} title={authUser.authUser.username}/>}
+		{authUser && <button className={styles.btn} onClick={logout}><i className="fa-solid fa-arrow-right-from-bracket"></i></button>}
+        {!authUser ? 
+        	<Link to="/login" style={{textAlign:"right"}}>Bejelentkezés</Link> 
+			: 
+			<img src={authUser.authUser.profileImageUrl ? 
+				authUser.authUser.profileImageUrl 
+				: 
+				"profile.webp"} 
+				alt={authUser.authUser.username} title={authUser.authUser.username}
+			/>}
     </div>
   )
 }
