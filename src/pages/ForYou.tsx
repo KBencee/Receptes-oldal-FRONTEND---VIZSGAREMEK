@@ -54,38 +54,44 @@ const ForYou = () => {
     <div className={styles.forYou}>
         <ForYouReel {...recipe}/>
         { !isMobile &&
-            <section className={styles.data}>
-                <DescriptionCommentToggleBtn description={isDescription} setDescription={setIsDescription}/>
-                <h2>{recipe.nev} by {recipe.feltoltoUsername}</h2>
-                {isDescription ? 
-                    <>
-                        <p>Elkészítési idő: {recipe.elkeszitesiIdo} perc</p>
-                        <h3>Hozzávalók:</h3>
-                        <p>{recipe.hozzavalok}</p>
-                        <h3>Leírás:</h3>
-                        <div className={styles.description}>
-                            <p>{recipe.leiras}</p>
+            <>
+                <div className={styles.arrows}>
+                    <i className="fa-solid fa-circle-down fa-rotate-180 fa-xl" onClick={() => {setRecipe(next.data as RecipeType)}}></i>
+                    <i className="fa-solid fa-circle-down fa-xl" onClick={() => {setRecipe(prev.data as RecipeType)}}></i>
+                </div>
+                <section className={styles.data}>
+                    <DescriptionCommentToggleBtn description={isDescription} setDescription={setIsDescription}/>
+                    <h2>{recipe.nev} by {recipe.feltoltoUsername}</h2>
+                    {isDescription ? 
+                        <>
+                            <p>Elkészítési idő: {recipe.elkeszitesiIdo} perc</p>
+                            <h3>Hozzávalók:</h3>
+                            <p>{recipe.hozzavalok}</p>
+                            <h3>Leírás:</h3>
+                            <div className={styles.description}>
+                                <p>{recipe.leiras}</p>
+                            </div>
+                            <div className={styles.arrow}>
+                                <i className="fa-solid fa-angle-down fa-bounce"></i>
+                            </div>
+                        </>
+                    :
+                        <div className={styles.comments}>
+                            {comments.data?.map(c => <Comment key={c.id} {...c}/>)}
                         </div>
-                        <div className={styles.arrow}>
-                            <i className="fa-solid fa-angle-down fa-bounce"></i>
+                    }
+                    {
+                        authUser && !isDescription &&
+                        <div>
+                            <h2>Írjon kommentet:</h2>
+                            <div className={styles.sendComment}>
+                                <input type="text" name="comment"/>
+                                <button><i className="fa-solid fa-paper-plane fa-xl"></i></button>
+                            </div>
                         </div>
-                    </>
-                :
-                    <div className={styles.comments}>
-                        {comments.data?.map(c => <Comment key={c.id} {...c}/>)}
-                    </div>
-                }
-                {
-                    authUser && !isDescription &&
-                    <div>
-                        <h2>Írjon kommentet:</h2>
-                        <div className={styles.sendComment}>
-                            <input type="text" name="comment"/>
-                            <button><i className="fa-solid fa-paper-plane fa-xl"></i></button>
-                        </div>
-                    </div>
-                }
-            </section>
+                    }
+                </section>
+            </>
         }
     </div>
   )

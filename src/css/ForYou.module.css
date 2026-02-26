@@ -17,6 +17,13 @@
         }
     }
 
+    .arrows{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2rem;
+    }
+
     section{
         background-attachment: fixed;
         padding: 1rem 0;
