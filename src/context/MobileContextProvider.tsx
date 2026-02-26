@@ -10,8 +10,8 @@ const MobileContextProvider = ({children}:{children: ReactNode}) => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
 
     const switchToMobile = () => {
-        if(isMobile !== window.innerWidth < 768)
-            setIsMobile(window.innerWidth < 768)
+        if(isMobile !== window.innerWidth <= 768)
+            setIsMobile(window.innerWidth <= 768)
     }
     window.addEventListener("resize", switchToMobile)
 
