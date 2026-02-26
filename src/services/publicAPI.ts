@@ -26,4 +26,5 @@ export async function loginUser(username: string, password: string) {
     console.log(data.accessToken)
     localStorage.setItem("access", data.accessToken)
     localStorage.setItem("refresh", data.refreshToken)
+    return true
 }
